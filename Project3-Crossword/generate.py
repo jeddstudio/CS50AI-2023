@@ -180,6 +180,16 @@ class CrosswordCreator():
         Return True or False
         True: if a revision was made to the domain of `x`;
         False: if no revision was made.
+
+        ### pseudocode of Arc Consistency
+            https://youtu.be/qK46ET1xk2A?si=U5yvUMIRieidC4Fx&t=4010
+            function Revise(csp, X, Y):
+                revised = false
+                for x in X.domain_:
+                    if no y in Y.domain satisfies constraint for (X,Y):
+                        delete x from X.domain
+                        revised = true
+                return revised
         """
         # Ensure arc consistency between two variables(x, y) (Arc Consistency)
             # Check each x, need at least 1 y that satisies the constraints
@@ -207,10 +217,15 @@ class CrosswordCreator():
         # Iterate x_word in the domain
         for x_words in self.domains[x].copy():
             # Set a marker to return found match or not
+            if len(x_words) <= i:
+                continue
+            
             match_found = False
 
             # Iterate y_word in the domain
             for y_words in self.domains[y]:  
+                if len(y_words) <= j:
+                    continue
                 
                 # If the letters are the same in the overlapping positions 
                 if x_words[i] == y_words[j]:
@@ -232,14 +247,75 @@ class CrosswordCreator():
 
     def ac3(self, arcs=None):
         """
+        Return True if arc consistency is enforced and no domains are empty;
+        return False if one or more domains end up empty.
+
         Update `self.domains` such that each variable is arc consistent.
         If `arcs` is None, begin with initial list of all arcs in the problem.
         Otherwise, use `arcs` as the initial list of arcs to make consistent.
 
-        Return True if arc consistency is enforced and no domains are empty;
-        return False if one or more domains end up empty.
+        ### AC-3 Algorithm
+        https://youtu.be/qK46ET1xk2A?si=_CtqqHlt_e_pw-8i&t=4150
+        Often we are interested in making the whole problem arc-consistent and not just one variable with respect to another. 
+        In this case, we will use an algorithm called AC-3, which uses Revise:
+
+        ### Pseudocode of AC-3 Algorithm
+        function AC-3(csp):
+            queue = all arcs in csp
+            while queue non-empty:
+                (X, Y) = Dequeue(queue)
+                if Revise(csp, X, Y):
+                    if size of X.domain == 0:
+                        return false
+                    for each Z in X.neighbors - {Y}:
+                        Enqueue(queue, (Z,X))
+            return true
         """
-        raise NotImplementedError
+        ###### 1. Perpare the queue ######
+            ### queue = all arcs in csp ###
+        queue = []
+        for X in self.crossword.variables:
+            # X: (0, 1) across : 3
+            # print(f"X: {X}")
+            for Y in self.crossword.variables:
+                # Y: (0, 1) across : 3
+                # Y: (4, 1) across : 4
+                # Y: ...
+                # print(f"Y: {Y}")
+                # Check if x and y overlap
+                if X != Y: # (X: (0, 1) across : 3) != (Y: (4, 1) across : 4 )                  # ⬛️ 🔲 ⬛️
+                    if self.crossword.overlaps[X, Y] is not None: # if have overlap(🟦)         # 🔲 🟦 🔲
+                        queue.append((X, Y))                                                    # ⬛️ 🔲 🔲
+                        # add the x, y into the queue
+        
+
+        ###### 2. Algorithm Part ######
+           ### while queue non-empty: ###   
+        while queue:
+            ### (X, Y) = Dequeue(queue)
+            (X, Y) = queue.pop(0) # use `.pop(0)` get the first item of list and delele
+                # (X, Y) = (Variable(0, 1, 'down', 5), Variable(4, 1, 'across', 4))
+
+            # Use `revise()` to check and edit `self.domain`
+            if self.revise(X, Y): # If return Ture it means `self.domain` revised
+
+                # if size of X.domain == 0:
+                if not self.domains[X]: # if domains[X] empty, end the while loop
+                    return False
+
+                # for each Z in X.neighbors - {Y}:
+                 # `.neighbors` is starting code given, just use it
+                for Z in self.crossword.neighbors(X) - {Y}:
+                    # `(6, 5) across : 6` in `{Variable(6, 5, 'across', 6), Variable(2, 1, 'across', 12), Variable(4, 4, 'across', 5)}` - `(2, 1) across : 12`
+
+                    # Enqueue(queue, (Z,X))
+                    queue.append((Z, X))
+                    # append:(Variable(6, 5, 'across', 6), Variable(1, 7, 'down', 7))
+       
+        return True # if `self.domains[X]` not empty, keep the while loop running
+
+
+
 
     def assignment_complete(self, assignment):
         """
