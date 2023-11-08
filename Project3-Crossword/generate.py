@@ -89,9 +89,6 @@ class CrosswordCreator():
 ######################## Help with testing your code ########################
 
 
-
-
-
     def solve(self):
         """
         Enforce node and arc consistency, and then solve the CSP.
@@ -131,7 +128,7 @@ class CrosswordCreator():
 
     ###### CSP ######
     Variables is Coordinates e.g. (1, 0), (1, 7) like Sudoku
-    Domains is the words
+    Domains(`self.domains`) is the words {'RECURRENT', 'CONDITION', 'BREADTH', ...}
     """
 
 
@@ -147,9 +144,7 @@ class CrosswordCreator():
         # print(self.crossword.variables)
         # {Variable(1, 12, 'down', 7), Variable(4, 4, 'across', 5), Variable(2, 1, 'across', 12), ...}
 
-
         for var in self.crossword.variables: # `.variables` is from crossword.py ➔ `Crossword()` ➔ `def __init__()`
-            print(f"This is var{var}")
             # var data like this
                 # (6, 5) across : 6
                 # (1, 7) down : 7
@@ -173,74 +168,122 @@ class CrosswordCreator():
             # Iterates to_remove_var 
             for word in to_remove_var:
                 self.domains[var].remove(word) # If the word in domain, it will be Removed
+ 
+
+
+    def revise(self, x, y): # x, y is put a cell info e.g (x=Variable(1, 12, 'down', 7) y=Variable(4, 4, 'across', 5))
+        """
+        Make variable `x` arc consistent with variable `y`.
+        To do so, remove values from `self.domains[x]` for which there is no
+        possible corresponding value for `y` in `self.domains[y]`.
+
+        Return True or False
+        True: if a revision was made to the domain of `x`;
+        False: if no revision was made.
+        """
+        # Ensure arc consistency between two variables(x, y) (Arc Consistency)
+            # Check each x, need at least 1 y that satisies the constraints
+
+        # Set a variable to return the result
+        revised = False
+
+        ### 1. Check overlap, if None, it means no needs to do anything
+        # `corossword.overlaps` is given function from starting code, we only use it and don't need how it actually work for now
+        # If we have "BARK" and "ART", they have overlap
+            # Then it will return (0, 1)
+        # Get x, y  index position
+        # It will check (x=Variable(1, 12, 'down', 7) y=Variable(4, 4, 'across', 5))                      
+        overlap = self.crossword.overlaps[x, y]         #   0 1 2 3      
+        if overlap is None:                             # 0 B A R K
+            return revised                              # 1   R
+            # revised = False                           # 2   T
+                # e.g. "CAR", "EXIT", they don't have overlap, no need to modified anything
+
+        ### 2. If overlap NOT None, begin to check
+        # Assign the index position to `i, j` (0, 1)
+        i, j = overlap
+
+        # Using a copy of domain to modifiy
+        # Iterate x_word in the domain
+        for x_words in self.domains[x].copy():
+            # Set a marker to return found match or not
+            match_found = False
+
+            # Iterate y_word in the domain
+            for y_words in self.domains[y]:  
+                
+                # If the letters are the same in the overlapping positions 
+                if x_words[i] == y_words[j]:
+                    match_found = True # Set the mark to True
+                    break # Stop checking, since we only need at leart one match
+
+            ### 3. If match NOT found finally, remove the x_words in domains
+            # x cannot exist in any valid solution 
+                # e.g x={"cat", "car"}，y={"bear", "arm", "gear"}
+                    # No word can match the first letter
+            if not match_found:
+                self.domains[x].remove(x_words) # So we remove the x_word from the field.
+                revised = True
+
+        return revised
 
 
 
-    # def revise(self, x, y):
-    #     """
-    #     Make variable `x` arc consistent with variable `y`.
-    #     To do so, remove values from `self.domains[x]` for which there is no
-    #     possible corresponding value for `y` in `self.domains[y]`.
 
-    #     Return True if a revision was made to the domain of `x`; return
-    #     False if no revision was made.
-    #     """
-    #     raise NotImplementedError
+    def ac3(self, arcs=None):
+        """
+        Update `self.domains` such that each variable is arc consistent.
+        If `arcs` is None, begin with initial list of all arcs in the problem.
+        Otherwise, use `arcs` as the initial list of arcs to make consistent.
 
-    # def ac3(self, arcs=None):
-    #     """
-    #     Update `self.domains` such that each variable is arc consistent.
-    #     If `arcs` is None, begin with initial list of all arcs in the problem.
-    #     Otherwise, use `arcs` as the initial list of arcs to make consistent.
+        Return True if arc consistency is enforced and no domains are empty;
+        return False if one or more domains end up empty.
+        """
+        raise NotImplementedError
 
-    #     Return True if arc consistency is enforced and no domains are empty;
-    #     return False if one or more domains end up empty.
-    #     """
-    #     raise NotImplementedError
+    def assignment_complete(self, assignment):
+        """
+        Return True if `assignment` is complete (i.e., assigns a value to each
+        crossword variable); return False otherwise.
+        """
+        raise NotImplementedError
 
-    # def assignment_complete(self, assignment):
-    #     """
-    #     Return True if `assignment` is complete (i.e., assigns a value to each
-    #     crossword variable); return False otherwise.
-    #     """
-    #     raise NotImplementedError
+    def consistent(self, assignment):
+        """
+        Return True if `assignment` is consistent (i.e., words fit in crossword
+        puzzle without conflicting characters); return False otherwise.
+        """
+        raise NotImplementedError
 
-    # def consistent(self, assignment):
-    #     """
-    #     Return True if `assignment` is consistent (i.e., words fit in crossword
-    #     puzzle without conflicting characters); return False otherwise.
-    #     """
-    #     raise NotImplementedError
+    def order_domain_values(self, var, assignment):
+        """
+        Return a list of values in the domain of `var`, in order by
+        the number of values they rule out for neighboring variables.
+        The first value in the list, for example, should be the one
+        that rules out the fewest values among the neighbors of `var`.
+        """
+        raise NotImplementedError
 
-    # def order_domain_values(self, var, assignment):
-    #     """
-    #     Return a list of values in the domain of `var`, in order by
-    #     the number of values they rule out for neighboring variables.
-    #     The first value in the list, for example, should be the one
-    #     that rules out the fewest values among the neighbors of `var`.
-    #     """
-    #     raise NotImplementedError
+    def select_unassigned_variable(self, assignment):
+        """
+        Return an unassigned variable not already part of `assignment`.
+        Choose the variable with the minimum number of remaining values
+        in its domain. If there is a tie, choose the variable with the highest
+        degree. If there is a tie, any of the tied variables are acceptable
+        return values.
+        """
+        raise NotImplementedError
 
-    # def select_unassigned_variable(self, assignment):
-    #     """
-    #     Return an unassigned variable not already part of `assignment`.
-    #     Choose the variable with the minimum number of remaining values
-    #     in its domain. If there is a tie, choose the variable with the highest
-    #     degree. If there is a tie, any of the tied variables are acceptable
-    #     return values.
-    #     """
-    #     raise NotImplementedError
+    def backtrack(self, assignment):
+        """
+        Using Backtracking Search, take as input a partial assignment for the
+        crossword and return a complete assignment if possible to do so.
 
-    # def backtrack(self, assignment):
-    #     """
-    #     Using Backtracking Search, take as input a partial assignment for the
-    #     crossword and return a complete assignment if possible to do so.
+        `assignment` is a mapping from variables (keys) to words (values).
 
-    #     `assignment` is a mapping from variables (keys) to words (values).
-
-    #     If no assignment is possible, return None.
-    #     """
-    #     raise NotImplementedError
+        If no assignment is possible, return None.
+        """
+        raise NotImplementedError
 
 
 def main():

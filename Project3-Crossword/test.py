@@ -20,6 +20,18 @@ def main():
     print("\n應用 enforce_node_consistency 後的變量域:")
     for variable in creator.crossword.variables:
         print(variable, creator.domains[variable])
+    
+
+
+
+
+
+
+
+
+
+
+
 
 if __name__ == "__main__":
     main()
@@ -41,3 +53,6 @@ if __name__ == "__main__":
 #     Variable(1, 7, 'down', 7): {'RECURRENT', 'CONDITION', 'BREADTH', 'DEPTH', 'BAYES', 'TRUTH', 'INFERENCE', 'TRUE', 'BYTE', 'HEURISTIC', 'BETA', 'RESOLUTION', 'LOGIC', 'CONSTRAINT', 'PROPOSITION', 'PRUNE', 'BIT', 'SINE', 'GRAPH', 'LEARNING', 'INTELLIGENCE', 'SEARCH', 'LANGUAGE', 'MARKOV', 'RESOLVE', 'ARTIFICIAL', 'LINE', 'OPTIMIZATION', 'DISTRIBUTION', 'INFER', 'NEURAL', 'PROBABILITY', 'ARC', 'UNCERTAINTY', 'INITIAL', 'CLASSIFY', 'REGRESSION', 'NETWORK', 'END', 'CLASSIFICATION', 'LOSS', 'ALPHA', 'ADVERSARIAL', 'NODE', 'CREATE', 'KNOWLEDGE', 'MINIMAX', 'START', 'SATISFACTION', 'REASON', 'FALSE'}, 
 #     Variable(1, 12, 'down', 7): {'RECURRENT', 'CONDITION', 'BREADTH', 'DEPTH', 'BAYES', 'TRUTH', 'INFERENCE', 'TRUE', 'BYTE', 'HEURISTIC', 'BETA', 'RESOLUTION', 'LOGIC', 'CONSTRAINT', 'PROPOSITION', 'PRUNE', 'BIT', 'SINE', 'GRAPH', 'LEARNING', 'INTELLIGENCE', 'SEARCH', 'LANGUAGE', 'MARKOV', 'RESOLVE', 'ARTIFICIAL', 'LINE', 'OPTIMIZATION', 'DISTRIBUTION', 'INFER', 'NEURAL', 'PROBABILITY', 'ARC', 'UNCERTAINTY', 'INITIAL', 'CLASSIFY', 'REGRESSION', 'NETWORK', 'END', 'CLASSIFICATION', 'LOSS', 'ALPHA', 'ADVERSARIAL', 'NODE', 'CREATE', 'KNOWLEDGE', 'MINIMAX', 'START', 'SATISFACTION', 'REASON', 'FALSE'}, 
 # }   
+
+
+
