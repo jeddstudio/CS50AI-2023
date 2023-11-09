@@ -133,7 +133,7 @@ class CrosswordCreator():
 
 
 ######################## 🧪🧪 Testing Code in Terminal 🧪🧪 ########################
-# `python generate.py data/structure1.txt data/words1.txt`
+######### `python generate.py data/structure1.txt data/words1.txt` #########
 
     def enforce_node_consistency(self):
         """
@@ -226,7 +226,7 @@ class CrosswordCreator():
             for y_words in self.domains[y]:  
                 if len(y_words) <= j:
                     continue
-                
+
                 # If the letters are the same in the overlapping positions 
                 if x_words[i] == y_words[j]:
                     match_found = True # Set the mark to True
@@ -241,7 +241,6 @@ class CrosswordCreator():
                 revised = True
 
         return revised
-
 
 
 
@@ -316,20 +315,63 @@ class CrosswordCreator():
 
 
 
-
     def assignment_complete(self, assignment):
         """
-        Return True if `assignment` is complete (i.e., assigns a value to each
-        crossword variable); return False otherwise.
+        Return True 
+            if `assignment` is complete (i.e., assigns a value to each crossword variable); 
+        Return False 
+            otherwise.
         """
-        raise NotImplementedError
+        ### `assignments` is a dictionary store the space that have been filled 
+
+        for var in self.crossword.variables: # `self.crossword.variables` is an unfilled space
+                # {Variable(0, 1, 'across', 3), Variable(4, 1, 'across', 4), Variable(1, 4, 'down', 4), Variable(0, 1, 'down', 5)}
+            if var not in assignment:
+                # {Variable(0, 1, 'across', 3) not in {}assignment
+                return False
+        return True
+        # If True, game end
+
+
 
     def consistent(self, assignment):
         """
-        Return True if `assignment` is consistent (i.e., words fit in crossword
-        puzzle without conflicting characters); return False otherwise.
+        Return True 
+            if `assignment` is consistent (i.e., words fit in crossword puzzle without conflicting characters); 
+        Return False 
+            otherwise.
         """
-        raise NotImplementedError
+        ### Check no repetition of words
+        # Set a list to store filled words
+        filled_words = []
+
+        for word in assignment.values():
+            if word in filled_words:
+                return False # If it has a repetition of word, end the function
+            
+            # If word not in filled_word, add it into list
+            filled_words.append(word)
+ 
+        
+        # Check that the length of each word is correct
+        for var, word in assignment.items():
+            # assignment.items() ＝ dict_items([(Variable(4, 1, 'across', 4), 'NINE')])
+            if var.length != len(word):
+                # 4 != 'NINE'
+                return False # If it has a not match of length, end the function
+
+
+        # Check all binary constraints between variables
+        for var1, word1 in assignment.items():
+            for var2, word2 in assignment.items():
+                if var1 != var2:
+                    # Use the given function overlaps to check overlap 🔲
+                    overlap = self.crossword.overlaps[var1, var2]
+                    if overlap and word1[overlap[0]] != word2[overlap[1]]: 
+                        return False # If 🔲 letter not same, end the function
+        return True
+
+
 
     def order_domain_values(self, var, assignment):
         """
@@ -338,17 +380,47 @@ class CrosswordCreator():
         The first value in the list, for example, should be the one
         that rules out the fewest values among the neighbors of `var`.
         """
-        raise NotImplementedError
+        # Set a list to store words
+        domain_values = []
+
+        for word in self.domains[var]: # domains is the words     
+            domain_values.append(word)
+
+        return domain_values
+
+
 
     def select_unassigned_variable(self, assignment):
         """
+        ### This function is used in Backtrack Search ###
+
         Return an unassigned variable not already part of `assignment`.
         Choose the variable with the minimum number of remaining values
         in its domain. If there is a tie, choose the variable with the highest
         degree. If there is a tie, any of the tied variables are acceptable
         return values.
         """
-        raise NotImplementedError
+        # Assign a variable to store 
+        unassigned_var = None
+        min_domain_size = float('inf') # Set the domain size as infinity
+
+
+        for var in self.crossword.variables: # var = a column or a row e.g `(0, 1) across : 3`
+
+            if var not in assignment: # If row or column NOT in assignment, aka the space not filled with text
+                # Get the size of domains
+                domain_size = len(self.domains[var])
+
+                # If domain smaller than minn_domain_size
+                if domain_size < min_domain_size:
+                    # Update the unassigend_var and min_domain_size
+                    unassigned_var = var
+                        # (0, 1) across : 3
+                    min_domain_size = domain_size
+        
+        return unassigned_var # (0, 1) across : 3
+
+
 
     def backtrack(self, assignment):
         """
@@ -358,8 +430,52 @@ class CrosswordCreator():
         `assignment` is a mapping from variables (keys) to words (values).
 
         If no assignment is possible, return None.
+
+        ### pseudocode of Backtrack Search ###
+        function Backtrack(assignment, csp):
+            if assignment complete:
+                return assignment
+            var = Select-Unassigned-Var(assignment, csp)
+            for value in Domain-Values(var, assignment, csp):
+                if value consistent with assignment:
+                    add {_var = value_} to assignment
+                    result = Backtrack(assignment, csp)
+                    if result ≠ failure:
+                        return result
+                remove {_var = value_} from assignment
+            return failure
         """
-        raise NotImplementedError
+        # If the crossword all completed, return True
+        if self.assignment_complete(assignment):
+            return assignment # True
+            # And the the program end
+
+        # If not
+        # Select an unassigned variable, e.g `(0, 1) across : 3`
+        var = self.select_unassigned_variable(assignment)
+
+        # Try to fill a word(domain) into the space(variable)
+        for value in self.order_domain_values(var, assignment): # value = 'NINE'
+            
+            # Check if word and space is match
+            new_assignment = assignment.copy() # Use a copy to do this
+            new_assignment[var] = value # 'NINE'
+
+            # If returns True, then the current assignment(new_assignment) is valid and the search can continue.
+            if self.consistent(new_assignment):
+                
+                # recursively calls the backtrack function to try to continue searching for solutions based on the current assignment
+                    # aka, loop the `.backtrack` funcition
+                result = self.backtrack(new_assignment)
+                
+                # If result is not None, then a valid solution was found, 
+                # because in backtracking search, None values are returned only if a valid solution is found.
+                if result is not None:
+                    return result
+
+        # There is no solution
+        return None # Aka the crossword can't complete
+
 
 
 def main():
