@@ -83,7 +83,6 @@ class NimAI():
          - `action` is a tuple `(i, j)` for an action
         """
         self.q = dict()
-        print(self.q)
         self.alpha = alpha
         self.epsilon = epsilon
 
@@ -98,57 +97,70 @@ class NimAI():
         self.update_q_value(old_state, action, old, reward, best_future)
 
 
+
+    """
+    # [1, 1, 3, 5], representing the state with 1 object in pile 0, 1 object in pile 1, 3 objects in pile 2, and 5 objects in pile 3
+    # `action` in the Nim game will be a pair of integers (i, j), 
+        # taking j objects from pile i. 
+        # `action` (3, 5) represents the action “from pile 3, take away 5 objects.” 
+    # Applying that `action` to the state [1, 1, 3, 5] would result in the new state [1, 1, 3, 0] (the same state, but with pile 3 now empty).
+    Return the Q-value for the state `state` and the action `action`.
+    If no Q-value exists yet in `self.q`, return 0.
+    """
+
     def get_q_value(self, state, action):
         """
-        Return the Q-value for the state `state` and the action `action`.
-        If no Q-value exists yet in `self.q`, return 0.
+        # Python dictionary can't use list as a key of dictionary
+            # need to convert state from list to tuple [] ➔ () 
+                # {([1, 1, 3, 5], (3, 1)): 0.9375, ...} ➔ {((1, 1, 3, 5), (3, 1)): 0.9375, ...}
 
-        ### [1, 1, 3, 5], representing the state with 1 object in pile 0, 1 object in pile 1, 3 objects in pile 2, and 5 objects in pile 3
-        ### `action` in the Nim game will be a pair of integers (i, j), 
-            # taking j objects from pile i. 
-            # `action` (3, 5) represents the action “from pile 3, take away 5 objects.” 
-        # Applying that `action` to the state [1, 1, 3, 5] would result in the new state [1, 1, 3, 0] (the same state, but with pile 3 now empty).
+        # `self.q` is a dictionary that store of trained data (e.g. 10000 times)
+            # {((0, 1, 0, 1), (3, 1)): 0.9375, ((0, 1, 0, 0), (1, 1)): -0.9375}
+                # q high is good, low is bad
+
+        # `get_q_value` is using state and action (e.g. ((0, 1, 0, 1), (3, 1))) to get a `q` value
+            # q_value = 0.9375
+        
+        # return q_value
+        # return 0, if that (state, action) Not in the dictionary
         """
-
         # The state is [1, 3, 5, 7] when the game start
         state_tuple = tuple(state) # Convert it to (1, 3, 5, 7) for dictionary data type
 
         if (state_tuple, action) in self.q:
-            return self.q[(state.tuple, action)]
+            # (state_tuple, action) ➔ (0, 1, 0, 0), (1, 1)
+                # if they are in self.q
+            return self.q[(state_tuple, action)] # return "-0.9375"
         else:
             return 0
 
 
     def update_q_value(self, state, action, old_q, reward, future_rewards):
         """
-        Update the Q-value for the state `state` and the action `action`
-        given the previous Q-value `old_q`, a current reward `reward`,
-        and an estiamte of future rewards `future_rewards`.
+        # Try and Calculate in the train
+            # Try a (state, action)
 
-        Use the formula:
-
-        Q(s, a) <- old value estimate
-                   + alpha * (new value estimate - old value estimate)
-
-        where `old value estimate` is the previous Q-value,
-        `alpha` is the learning rate, and 
-        `new value estimate` is the sum of the current reward and estimated future rewards.
+        # Use the formula:
+            # Q(s, a) <- old value estimate + alpha * (new value estimate - old value estimate)
+                # `old value estimate` is the previous Q-value,
+                # `alpha` is the learning rate, and 
+                # `new value estimate` is the sum of the current reward and estimated future rewards.
+        
+        # Update a new_q for the (state, action)
         """
-        s = state
-        a = action
-        old_value = old_q
-        current_reward = reward
-        print(old_q)
-        print(reward)
-        print(future_rewards)
-
         # The state is [1, 3, 5, 7] when the game start
         state_tuple = tuple(state) # Convert it to (1, 3, 5, 7) for dictionary data type
 
-        new_q = old_q + self.alpha * (reward + future_rewards - old_q)
+        # Use the formula:
+        new_q = old_q + self.alpha * ((reward + future_rewards) - old_q)
+        # new value estimeate = (reward + future_rewards), the sum of "current reward + future rewards"
+            # new_q: 0.9999961853027344 = 0.9999923706054688 + 0.5 * ((1 + 0) - 0.9999923706054688)
 
 
         self.q[(state_tuple, action)] = new_q
+        # Assign the new_q to key:(state_tuple, action)
+            # (0, 1, 0, 3) (3, 3) : 0.9980468451976771
+                # It means this state and action has 0.9980468451976771
 
 
     def best_future_reward(self, state):
@@ -161,8 +173,32 @@ class NimAI():
         Q-value in `self.q`. If there are no available actions in
         `state`, return 0.
         """
-        # raise NotImplementedError
-        return None
+        # The state is [1, 3, 5, 7] when the game start
+        state_tuple = tuple(state) # Convert it to (1, 3, 5, 7) for dictionary data type
+
+        # A dictionary that the move can be choice
+        possible_actions = Nim.available_actions(state)
+            # {(1, 2), (2, 1), (3, 4), (3, 1), (3, 7), (1, 1), (3, 3), (3, 6), (3, 2), (1, 3), (3, 5)}
+        
+        # Initialize max Q value to 0
+        max_q_value = 0
+
+        # Check the Q-value in each `possible_action`
+        for action in possible_actions:
+            # action: (1, 1)
+
+            # Use get() to get state and action, and set a defualt q_value to 0
+            q_value = self.q.get((state_tuple, action), 0)
+            # It will have multi state_tuple for the action
+                #action: (1, 1)
+                # ((0, 1, 0, 2) (1, 1): 0), ((0, 1, 0, 1) (1, 1): 0), ((0, 1, 0, 0) (1, 1): -0.984375)
+
+            # Find the max and assign it into `max_q_value`
+            if q_value > max_q_value:
+                max_q_value = q_value
+
+        return max_q_value
+
 
     def choose_action(self, state, epsilon=True):
         """
@@ -179,8 +215,34 @@ class NimAI():
         If multiple actions have the same Q-value, any of those
         options is an acceptable return value.
         """
-        # raise NotImplementedError
-        return None
+        # A dictionary that the move can be choice
+        possible_actions = Nim.available_actions(state)
+            # {(1, 2), (2, 1), (3, 4), (3, 1), (3, 7), (1, 1), (3, 3), (3, 6), (3, 2), (1, 3), (3, 5)}
+        
+        # Initialize `best_action` adn `best_q_value`
+        best_action = None
+        best_q_value = float('-inf')
+
+        # Epsilon-greedy Algorithm
+            # The `epsilon` is come from `NimAI()` `def __init__`
+        if epsilon: # If `epsilon` is True
+            random_number = random.random() # Generate a random number
+            
+            if random_number < self.epsilon: 
+                return random.choice(list(possible_actions))
+                # use `.choice` to random pick a action(3, 6)
+            
+        # IF `epsilon` NOT True
+            # Select the action with the highest Q
+        for action in possible_actions:
+            q_value = self.get_q_value(state, action)
+            if q_value > best_q_value:
+                best_q_value = q_value
+                best_action = action
+
+        return best_action
+    
+    
 
 def train(n):
     """
@@ -295,15 +357,3 @@ def play(ai, human_player=None):
             winner = "Human" if game.winner == human_player else "AI"
             print(f"Winner is {winner}")
             return
-
-
-
-
-
-
-
-
-
-
-
-
