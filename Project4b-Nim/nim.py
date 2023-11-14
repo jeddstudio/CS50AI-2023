@@ -197,6 +197,7 @@ class NimAI():
             if q_value > max_q_value:
                 max_q_value = q_value
 
+        # The default is 0, show if no max_q_value got, it will always return 0
         return max_q_value
 
 
@@ -233,7 +234,7 @@ class NimAI():
                 # use `.choice` to random pick a action(3, 6)
             
         # IF `epsilon` NOT True
-            # Select the action with the highest Q
+            # Select the action with the highest Q in `possible_action`
         for action in possible_actions:
             q_value = self.get_q_value(state, action)
             if q_value > best_q_value:
