@@ -5,13 +5,13 @@ import time
 
 class Nim():
 
-    def __init__(self, initial=[1, 3, 5, 7]):
-        """
-        Initialize game board.
-        Each game board has
-            - `piles`: a list of how many elements remain in each pile
-            - `player`: 0 or 1 to indicate which player's turn
-            - `winner`: None, 0, or 1 to indicate who the winner is
+    def __init__(self, initial=[1, 3, 5, 7]):              
+        """                                                  
+        Initialize game board.                                                  [1, 3, 5, 7] looks like
+        Each game board has                                                             #
+            - `piles`: a list of how many elements remain in each pile                 ###
+            - `player`: 0 or 1 to indicate which player's turn                        #####
+            - `winner`: None, 0, or 1 to indicate who the winner is                  #######
         """
         self.piles = initial.copy()
         self.player = 0
@@ -83,6 +83,7 @@ class NimAI():
          - `action` is a tuple `(i, j)` for an action
         """
         self.q = dict()
+        print(self.q)
         self.alpha = alpha
         self.epsilon = epsilon
 
@@ -96,12 +97,27 @@ class NimAI():
         best_future = self.best_future_reward(new_state)
         self.update_q_value(old_state, action, old, reward, best_future)
 
+
     def get_q_value(self, state, action):
         """
         Return the Q-value for the state `state` and the action `action`.
         If no Q-value exists yet in `self.q`, return 0.
+
+        ### [1, 1, 3, 5], representing the state with 1 object in pile 0, 1 object in pile 1, 3 objects in pile 2, and 5 objects in pile 3
+        ### `action` in the Nim game will be a pair of integers (i, j), 
+            # taking j objects from pile i. 
+            # `action` (3, 5) represents the action “from pile 3, take away 5 objects.” 
+        # Applying that `action` to the state [1, 1, 3, 5] would result in the new state [1, 1, 3, 0] (the same state, but with pile 3 now empty).
         """
-        raise NotImplementedError
+
+        # The state is [1, 3, 5, 7] when the game start
+        state_tuple = tuple(state) # Convert it to (1, 3, 5, 7) for dictionary data type
+
+        if (state_tuple, action) in self.q:
+            return self.q[(state.tuple, action)]
+        else:
+            return 0
+
 
     def update_q_value(self, state, action, old_q, reward, future_rewards):
         """
@@ -115,10 +131,25 @@ class NimAI():
                    + alpha * (new value estimate - old value estimate)
 
         where `old value estimate` is the previous Q-value,
-        `alpha` is the learning rate, and `new value estimate`
-        is the sum of the current reward and estimated future rewards.
+        `alpha` is the learning rate, and 
+        `new value estimate` is the sum of the current reward and estimated future rewards.
         """
-        raise NotImplementedError
+        s = state
+        a = action
+        old_value = old_q
+        current_reward = reward
+        print(old_q)
+        print(reward)
+        print(future_rewards)
+
+        # The state is [1, 3, 5, 7] when the game start
+        state_tuple = tuple(state) # Convert it to (1, 3, 5, 7) for dictionary data type
+
+        new_q = old_q + self.alpha * (reward + future_rewards - old_q)
+
+
+        self.q[(state_tuple, action)] = new_q
+
 
     def best_future_reward(self, state):
         """
@@ -130,7 +161,8 @@ class NimAI():
         Q-value in `self.q`. If there are no available actions in
         `state`, return 0.
         """
-        raise NotImplementedError
+        # raise NotImplementedError
+        return None
 
     def choose_action(self, state, epsilon=True):
         """
@@ -147,8 +179,8 @@ class NimAI():
         If multiple actions have the same Q-value, any of those
         options is an acceptable return value.
         """
-        raise NotImplementedError
-
+        # raise NotImplementedError
+        return None
 
 def train(n):
     """
@@ -263,3 +295,15 @@ def play(ai, human_player=None):
             winner = "Human" if game.winner == human_player else "AI"
             print(f"Winner is {winner}")
             return
+
+
+
+
+
+
+
+
+
+
+
+
