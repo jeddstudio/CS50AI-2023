@@ -1,5 +1,7 @@
 # jeddstudio - Traffic
 ---
+[Project 5 - Traffic Video](https://youtu.be/jv11slst1J0)
+
 dataset not in the repository
 
 This project uses the TensorFlow Keras Convolutional Neural Network(CNN) model - Sequence model
@@ -18,9 +20,9 @@ I conducted two tests.
 - Hidden layer with dropout: `128` units and dropout of `0.5`
 
 ##### Result: 
-`333/333 - 1s - loss: 3.5003 - accuracy: 0.0556 - 741ms/epoch - 2ms/step`
-- The training took about 30 seconds
-- The `loss` is as high as 3.5003, which means that the model's prediction is not very accurate
+`333/333 - 1s - loss: 3.5070 - accuracy: 0.0556 - 804ms/epoch - 2ms/step`
+- The training took about 32 seconds
+- The `loss` is as high as 3.5070, which means that the model's prediction is not very accurate
 - The `accuracy` is only 5.56%, this is a very low accuracy rate and it indicates that the model is not performing well
 
 ##### Conclusion
@@ -42,10 +44,10 @@ I conducted two tests.
 - Hidden layer with dropout: `128` units and dropout of `0.5`
 
 ##### Result: 
-`333/333 - 1s - loss: 0.1510 - accuracy: 0.9602 - 709ms/epoch - 2ms/step`
+`333/333 - 1s - loss: 0.1354 - accuracy: 0.9641 - 741ms/epoch - 2ms/step`
 - The training took about 36 seconds
-- The `loss` is 0.1510, which means that significantly improved prediction of the model
-- The `accuracy` is 96.02%, Indicates that the model has completed its work satisfactorily.
+- The `loss` is 0.1354, which means that significantly improved prediction of the model
+- The `accuracy` is 96.41%, Indicates that the model has completed its work satisfactorily.
 
 ##### Conclusion
 - The "Handwriting" in the lecture demonstration is only a small number of black and white images, so there is no need to use more than 1 set of convolution and pooling
