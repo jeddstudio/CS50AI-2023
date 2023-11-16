@@ -1,5 +1,7 @@
 # jeddstudio - Traffic
 ---
+dataset not in the repository
+
 This project uses the TensorFlow Keras Convolutional Neural Network(CNN) model - Sequence model
 
 I conducted two tests.
