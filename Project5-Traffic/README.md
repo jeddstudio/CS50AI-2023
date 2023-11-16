@@ -6,7 +6,7 @@ I conducted two tests.
 
 
 ### 1st Test
-![[1st_test.png]]
+![1st_test](1st_test.png)
 ##### 1st Test Setting
 - I use the same settings as "handwriting.py" in the course
 - Convolutional layer: 32 filters and a 3x3 kernel `32, (3, 3)`
@@ -29,7 +29,7 @@ I conducted two tests.
 
 ### 2nd Test
 ##### 2nd Test Setting
-![[2nd_test.png]]
+![2nd_test](2nd_test.png)
 - The First Convolution and Pooling setting are the same as the 1st Test
 - Add the Second set of Convolution and Pooling
 - Convolutional layer: 64 filters and a 3x3 kernel `64, (3, 3)`
