@@ -124,34 +124,36 @@ def get_model():
          # Reducing the spatial size of the feature map reduces the amount of computation and helps prevent over-simulation
 
 
-        # ############ Second Convolution and Pooling ############
-        # # Another convolutional layer
-        # tf.keras.layers.Conv2D(
-        #     64, (3, 3), activation='relu'
-        # ),
-        # # `64`, 64different filters
-        # # `(3, 3)`we are using a 3x3 filter
-        # # `activation='relu'` This is the activation function, ReLU (Rectified Linear Unit).
+        ############ Second Convolution and Pooling ############
+        # Another convolutional layer
+        tf.keras.layers.Conv2D(
+            64, (3, 3), activation='relu'
+        ),
+        # `64`, 64different filters
+        # `(3, 3)`we are using a 3x3 filter
+        # `activation='relu'` This is the activation function, ReLU (Rectified Linear Unit).
 
-        # # Another Pooling Layer 
-        # tf.keras.layers.MaxPooling2D(pool_size=(2, 2)),
-        # # minimize to 2x2 pixel
-        #  # Reducing the spatial size of the feature map reduces the amount of computation and helps prevent over-simulation
+        # Another Pooling Layer 
+        tf.keras.layers.MaxPooling2D(pool_size=(2, 2)),
+        # minimize to 2x2 pixel
+         # Reducing the spatial size of the feature map reduces the amount of computation and helps prevent over-simulation
 
 
-        # Flatten units
+        ############ Flatten units ############ 
         tf.keras.layers.Flatten(), # Necessary Steps
             
 
+        ############ Hidden layer and dropout ############ 
         # Add a hidden layer with dropout
         tf.keras.layers.Dense(128, activation='relu'), # `128`: This means there are 128 neurons in the layer
         tf.keras.layers.Dropout(0.5), # `0.5`: This is the dropout rate, each neuron has a 50% chance of not being activated in each training iteration.
 
 
-        # Output layer
+         ############ Output layer ############ 
         # Add an output layer with output units for all 10 digits
         tf.keras.layers.Dense(NUM_CATEGORIES, activation='softmax')
     ])
+
 
     # Compile the model
     model.compile(
@@ -166,9 +168,6 @@ def get_model():
 
 if __name__ == "__main__":
     main()
-
-
-
 
 
 
