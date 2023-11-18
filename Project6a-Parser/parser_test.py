@@ -18,78 +18,122 @@ V -> "smiled" | "tell" | "were"
 
 NONTERMINALS = """
 S -> N V
-NP -> D N | N
-VP -> V | V NP
-
 S -> NP VP
-
-AP -> A | A AP
-NP -> N | D NP | AP NP | N PP
-PP -> P NP
+NP -> Det N | N
+NP -> N | Det NP | AP NP | N PP
+VP -> V | V NP
 VP -> V | V NP | V NP PP
+AP -> A | A AP
+PP -> P NP
 """
+# S Adj N Conj N V
+# Holmes sat in the red armchair and he chuckled.
+
 
 grammar = nltk.CFG.fromstring(NONTERMINALS + TERMINALS)
 parser = nltk.ChartParser(grammar)
 
 
-sentence = "holmes sat 12 a $#) A CAR"
+sentence = "a holmes tell"
 
 
 
-# def main():
 
-#     # If filename specified, read sentence from file
-#     if len(sys.argv) == 2:
-#         with open(sys.argv[1]) as f:
-#             s = f.read()
 
-#     # Otherwise, get sentence as input
-#     else:
-#         s = input("Sentence: ")
+def main():
 
-#     # Convert input into list of words
-#     s = preprocess(s)
+    # If filename specified, read sentence from file
+    if len(sys.argv) == 2:
+        with open(sys.argv[1]) as f:
+            s = f.read()
 
-#     # Attempt to parse sentence
-#     try:
-#         trees = list(parser.parse(s))
-#     except ValueError as e:
-#         print(e)
-#         return
-#     if not trees:
-#         print("Could not parse sentence.")
-#         return
+    # Otherwise, get sentence as input
+    else:
+        s = input("Sentence: ")
 
-#     # Print each tree with noun phrase chunks
-#     for tree in trees:
-#         tree.pretty_print()
+    # Convert input into list of words
+    s = preprocess(s)
 
-#         print("Noun Phrase Chunks")
-#         for np in np_chunk(tree):
-#             print(" ".join(np.flatten()))
+    # Attempt to parse sentence
+    try:
+        trees = list(parser.parse(s))
+        print("This is trees")
+        print(trees)
+    except ValueError as e:
+        print(e)
+        return
+    if not trees:
+        print("Could not parse sentence.")
+        return
+
+    # Print each tree with noun phrase chunks
+    for tree in trees:
+        tree.pretty_print()
+
+        print("Noun Phrase Chunks")
+        for np in np_chunk(tree):
+            print(" ".join(np.flatten()))
+
+
+
+# ############ This is `trees` ############
+# [Tree('S', [Tree('NP', [Tree('N', ['we'])]), Tree('VP', [Tree('V', ['arrived']), Tree('NP', [Tree('Det', ['the']), Tree('N', ['day'])]), 
+# Tree('PP', [Tree('P', ['before']), Tree('NP', [Tree('N', ['thursday'])])])])]), Tree('S', [Tree('NP', [Tree('N', ['we'])]), Tree('VP', 
+# [Tree('V', ['arrived']), Tree('NP', [Tree('Det', ['the']), Tree('NP', [Tree('N', ['day'])])]), Tree('PP', [Tree('P', ['before']), 
+# Tree('NP', [Tree('N', ['thursday'])])])])]), Tree('S', [Tree('NP', [Tree('N', ['we'])]), Tree('VP', [Tree('V', ['arrived']), 
+# Tree('NP', [Tree('Det', ['the']), Tree('NP', [Tree('N', ['day']), Tree('PP', [Tree('P', ['before']), Tree('NP', [Tree('N', ['thursday'])])])])])])])]
+
+
+# ###### This is how `tree` look like######
+# (S
+#   (NP (N we))
+#   (VP
+#     (V arrived)
+#     (NP (Det the) (NP (N day) (PP (P before) (NP (N thursday)))))))
+# ########################
+
+
+# ############ `tree.pretty_print()` ############
+#              S                             
+#   ___________|___                           
+#  |               VP                        
+#  |      _________|___                       
+#  |     |             NP                    
+#  |     |      _______|____                  
+#  |     |     |            NP               
+#  |     |     |    ________|_____            
+#  |     |     |   |              PP         
+#  |     |     |   |         _____|_____      
+#  NP    |     |   |        |           NP   
+#  |     |     |   |        |           |     
+#  N     V    Det  N        P           N    
+#  |     |     |   |        |           |     
+#  we arrived the day     before     thursday
+# ############ `tree.pretty_print()` ############
+
 
 
 def preprocess(sentence):
     """
-    Convert `sentence` to a list of its words.
-    Pre-process sentence by converting all characters to lowercase
-    and removing any word that does not contain at least one alphabetic
-    character.
+    - Pre-process sentence by converting all characters to lowercase
+    - Convert `sentence` to a list of its words.
+    - removing any word that does not contain at least one alphabetic character.
     """
-    preprocess_lst = []
+    #  sentence = We arrived the day before Thursday.
+
+    preprocess_list = []
     lower_sentence = sentence.lower() # convert sentence to lower case
 
     # Use `nltk.word_tokenize` to convert the sentence to a list
-    word_lst = nltk.word_tokenize(lower_sentence) # ['holmes', 'sat', '12', 'a', '$', '#', ')', 'a', 'car']
-    
+    word_list = nltk.word_tokenize(lower_sentence) 
+    # ['we', 'arrived', 'the', 'day', 'before', 'thursday', '.']
 
-    for word in word_lst:
-        if word.isalpha():
-            preprocess_lst.append(word)
-    # ['holmes', 'sat', 'a', 'a', 'car']
+    for word in word_list:
+        if word.isalpha(): # only alphabetic character
+            preprocess_list.append(word)
     
-    return preprocess_lst
+    # preprocess_list = ['we', 'arrived', 'the', 'day', 'before', 'thursday']
+    return preprocess_list
 
 
 def np_chunk(tree):
@@ -98,13 +142,49 @@ def np_chunk(tree):
     A noun phrase chunk is defined as any subtree of the sentence
     whose label is "NP" that does not itself contain any other
     noun phrases as subtrees.
+    
+    Returns:
+    list: A list of nltk.Tree objects, each representing a noun phrase chunk
     """
-    raise NotImplementedError
+    #  sentence = We arrived the day before Thursday.
+    # ###### This is how `tree` look like######
+    # (S
+    #   (NP (N we))
+    #   (VP
+    #     (V arrived)
+    #     (NP (Det the) (NP (N day) (PP (P before) (NP (N thursday)))))))
+    # ########################
+    chunks_list = []
+
+    for subtree in tree.subtrees():
+        # `subtree` will loop throught S, (NP (N we)), NP, ...
+
+        if subtree.label() == 'NP': # If `subtree` has "NP", e.g. "(NP (N we))"
+
+            if not any(child.label() == 'NP' for child in subtree): 
+            # Check if there are any "NP" in the current "NP"
+                # If not, add this "NP" into `chunks_list`
+                chunks_list.append(subtree)
+                # (NP (N we))
+                # (NP (N day) (PP (P before) (NP (N thursday)))) 
+                # (NP (N thursday))
+
+    return chunks_list
+    # chunks_list = [Tree('NP', [Tree('N', ['we'])]), Tree('NP', [Tree('N', ['day']), 
+    #               Tree('PP', [Tree('P', ['before']), Tree('NP', [Tree('N', ['thursday'])])])]), 
+    #               Tree('NP', [Tree('N', ['thursday'])])]
+    
 
 
-# if __name__ == "__main__":
-#     main()
 
 
 
-preprocess(sentence)
+if __name__ == "__main__":
+    main()
+
+
+
+# s = preprocess(sentence)
+
+# np_chunk(s)
+
