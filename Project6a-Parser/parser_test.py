@@ -20,13 +20,14 @@ NONTERMINALS = """
 S -> N V
 S -> NP VP
 NP -> Det N | N
-NP -> N | Det NP | AP NP | N PP
+NP -> N | Det NP | AdjP NP | N PP
 VP -> V | V NP
 VP -> V | V NP | V NP PP
 AP -> A | A AP
 PP -> P NP
+ConjP -> NP Conj VP | V Conj V
 """
-# S Adj N Conj N V
+# N      V   P  Det Adj N        Conj N  V
 # Holmes sat in the red armchair and he chuckled.
 
 
@@ -74,7 +75,7 @@ def main():
         for np in np_chunk(tree):
             print(" ".join(np.flatten()))
 
-
+# ############ Using the 3.txt for demo We arrived the day before Thursday. ############
 
 # ############ This is `trees` ############
 # [Tree('S', [Tree('NP', [Tree('N', ['we'])]), Tree('VP', [Tree('V', ['arrived']), Tree('NP', [Tree('Det', ['the']), Tree('N', ['day'])]), 
