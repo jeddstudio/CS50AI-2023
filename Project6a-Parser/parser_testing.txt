@@ -1,0 +1,1607 @@
+(100days) jeddwong@Jedds-MacBook-Pro-14 Project6a-Parser % python parser.py sentences/1.txt 
+        S     
+   _____|___   
+  N         V 
+  |         |  
+holmes     sat
+
+Noun Phrase Chunks
+        S     
+   _____|___   
+  NP        VP
+  |         |  
+  N         V 
+  |         |  
+holmes     sat
+
+Noun Phrase Chunks
+holmes
+
+
+(100days) jeddwong@Jedds-MacBook-Pro-14 Project6a-Parser % python parser.py sentences/2.txt
+            S              
+   _________|___            
+  |             VP         
+  |      _______|___        
+  |     |           NP     
+  |     |        ___|___    
+  NP    |      POS      |  
+  |     |       |       |   
+  N     V      Det      N  
+  |     |       |       |   
+holmes lit      a      pipe
+
+Noun Phrase Chunks
+holmes
+a pipe
+            S              
+   _________|___            
+  |             VP         
+  |      _______|___        
+  |     |           NP     
+  |     |        ___|___    
+  NP    |      POS      NP 
+  |     |       |       |   
+  N     V      Det      N  
+  |     |       |       |   
+holmes lit      a      pipe
+
+Noun Phrase Chunks
+holmes
+pipe
+
+
+(100days) jeddwong@Jedds-MacBook-Pro-14 Project6a-Parser % python parser.py sentences/3.txt
+             S                             
+  ___________|___                           
+ |               VP                        
+ |      _________|___                       
+ |     |             NP                    
+ |     |      _______|____                  
+ |     |     |            NP               
+ |     |     |    ________|_____            
+ NP    |    POS  |              PP         
+ |     |     |   |         _____|_____      
+ N     V    Det  N        P           N    
+ |     |     |   |        |           |     
+ we arrived the day     before     thursday
+
+Noun Phrase Chunks
+we
+day before thursday
+             S                             
+  ___________|___                           
+ |               VP                        
+ |      _________|___                       
+ |     |             NP                    
+ |     |      _______|____                  
+ |     |     |            NP               
+ |     |     |    ________|_____            
+ |     |     |   |              PP         
+ |     |     |   |         _____|_____      
+ NP    |    POS  |        |           NP   
+ |     |     |   |        |           |     
+ N     V    Det  N        P           N    
+ |     |     |   |        |           |     
+ we arrived the day     before     thursday
+
+Noun Phrase Chunks
+we
+day before thursday
+thursday
+
+
+(100days) jeddwong@Jedds-MacBook-Pro-14 Project6a-Parser % python parser.py sentences/4.txt
+                        S                                    
+             ___________|_________________________            
+            CP                           |        |          
+   _________|___                         |        |           
+  |             VP                       |        |          
+  |      _______|___                     |        |           
+  |     |           PP                   |        |          
+  |     |    _______|___                 |        |           
+  |     |   |           NP               |        |          
+  |     |   |    _______|___             |        |           
+  |     |   |   |           NP           |        CP         
+  |     |   |   |        ___|_____       |     ___|_____      
+  NP    |   |  POS     POS        |      |    NP        VP   
+  |     |   |   |       |         |      |    |         |     
+  N     V   P  Det     Adj        N     Conj  N         V    
+  |     |   |   |       |         |      |    |         |     
+holmes sat  in the     red     armchair and   he     chuckled
+
+Noun Phrase Chunks
+holmes
+red armchair
+he
+                        S                                    
+             ___________|_________________________            
+            CP                           |        |          
+   _________|___                         |        |           
+  |             VP                       |        |          
+  |      _______|___                     |        |           
+  |     |           PP                   |        |          
+  |     |    _______|___                 |        |           
+  |     |   |           NP               |        |          
+  |     |   |    _______|___             |        |           
+  |     |   |   |           NP           |        CP         
+  |     |   |   |        ___|_____       |     ___|_____      
+  NP    |   |  POS     POS        NP     |    NP        VP   
+  |     |   |   |       |         |      |    |         |     
+  N     V   P  Det     Adj        N     Conj  N         V    
+  |     |   |   |       |         |      |    |         |     
+holmes sat  in the     red     armchair and   he     chuckled
+
+Noun Phrase Chunks
+holmes
+armchair
+he
+
+
+
+(100days) jeddwong@Jedds-MacBook-Pro-14 Project6a-Parser % python parser.py sentences/5.txt
+                    S                                 
+      ______________|_________                         
+     |                        VP                      
+     |               _________|_______                 
+     |              |                 NP              
+     |              |      ___________|_______         
+     NP             |     |                   NP      
+  ___|______        |     |            _______|____    
+POS         |       |    POS         POS           |  
+ |          |       |     |           |            |   
+Det         N       V    Det         Adj           N  
+ |          |       |     |           |            |   
+ my     companion smiled  an     enigmatical     smile
+
+Noun Phrase Chunks
+my companion
+enigmatical smile
+                    S                                 
+      ______________|_________                         
+     |                        VP                      
+     |               _________|_______                 
+     |              |                 NP              
+     |              |      ___________|_______         
+     NP             |     |                   NP      
+  ___|______        |     |            _______|____    
+POS         |       |    POS         POS           NP 
+ |          |       |     |           |            |   
+Det         N       V    Det         Adj           N  
+ |          |       |     |           |            |   
+ my     companion smiled  an     enigmatical     smile
+
+Noun Phrase Chunks
+my companion
+smile
+                    S                                 
+      ______________|_________                         
+     |                        VP                      
+     |               _________|_______                 
+     |              |                 NP              
+     |              |      ___________|_______         
+     NP             |     |                   NP      
+  ___|______        |     |            _______|____    
+POS         NP      |    POS         POS           |  
+ |          |       |     |           |            |   
+Det         N       V    Det         Adj           N  
+ |          |       |     |           |            |   
+ my     companion smiled  an     enigmatical     smile
+
+Noun Phrase Chunks
+companion
+enigmatical smile
+                    S                                 
+      ______________|_________                         
+     |                        VP                      
+     |               _________|_______                 
+     |              |                 NP              
+     |              |      ___________|_______         
+     NP             |     |                   NP      
+  ___|______        |     |            _______|____    
+POS         NP      |    POS         POS           NP 
+ |          |       |     |           |            |   
+Det         N       V    Det         Adj           N  
+ |          |       |     |           |            |   
+ my     companion smiled  an     enigmatical     smile
+
+Noun Phrase Chunks
+companion
+smile
+
+
+
+(100days) jeddwong@Jedds-MacBook-Pro-14 Project6a-Parser % python parser.py sentences/6.txt
+                 S                 
+   ______________|___               
+  |                  VP            
+  |        __________|___           
+  NP      |              PP        
+  |       |           ___|_____     
+  N       V          P         N   
+  |       |          |         |    
+holmes chuckled      to     himself
+
+Noun Phrase Chunks
+holmes
+                 S                 
+   ______________|___               
+  |                  VP            
+  |        __________|___           
+  |       |              PP        
+  |       |           ___|_____     
+  NP      |          |         NP  
+  |       |          |         |    
+  N       V          P         N   
+  |       |          |         |    
+holmes chuckled      to     himself
+
+Noun Phrase Chunks
+holmes
+himself
+
+
+
+(100days) jeddwong@Jedds-MacBook-Pro-14 Project6a-Parser % python parser.py sentences/7.txt
+                                  S                                     
+                __________________|_____________                         
+               |                  |             CP                      
+               |                  |     ________|___                     
+               |                  |    |            VP                  
+               |                  |    |    ________|___                 
+               |                  |    |   |            PP              
+               |                  |    |   |     _______|___             
+               CP                 |    |   |    |           NP          
+      _________|____              |    |   |    |    _______|____        
+     NP             VP            |    |   |    |   |            NP     
+  ___|____      ____|___          |    |   |    |   |        ____|___    
+ |        PP   |        NP        |    |   |    |   |       |        PP 
+ |        |    |     ___|___      |    |   |    |   |       |        |   
+ |       POS   |   POS      |     |    NP  |    |  POS      |       POS 
+ |        |    |    |       |     |    |   |    |   |       |        |   
+ N       Adv   V   Det      N    Conj  N   V    P  Det      N       Adv 
+ |        |    |    |       |     |    |   |    |   |       |        |   
+she     never said  a      word until  we were  at the     door     here
+
+Noun Phrase Chunks
+she never
+a word
+we
+door here
+                                  S                                     
+                __________________|_____________                         
+               |                  |             CP                      
+               |                  |     ________|___                     
+               |                  |    |            VP                  
+               |                  |    |    ________|___                 
+               |                  |    |   |            PP              
+               |                  |    |   |     _______|___             
+               CP                 |    |   |    |           NP          
+      _________|____              |    |   |    |    _______|____        
+     NP             VP            |    |   |    |   |            NP     
+  ___|____      ____|___          |    |   |    |   |        ____|___    
+ |        PP   |        NP        |    |   |    |   |       |        PP 
+ |        |    |     ___|___      |    |   |    |   |       |        |   
+ |       POS   |   POS      NP    |    NP  |    |  POS      |       POS 
+ |        |    |    |       |     |    |   |    |   |       |        |   
+ N       Adv   V   Det      N    Conj  N   V    P  Det      N       Adv 
+ |        |    |    |       |     |    |   |    |   |       |        |   
+she     never said  a      word until  we were  at the     door     here
+
+Noun Phrase Chunks
+she never
+word
+we
+door here
+                                  S                                     
+            ______________________|_____________                         
+           |                      |             CP                      
+           |                      |     ________|___                     
+           |                      |    |            VP                  
+           |                      |    |    ________|___                 
+           CP                     |    |   |            PP              
+  _________|____                  |    |   |     _______|___             
+ |              VP                |    |   |    |           NP          
+ |     _________|___              |    |   |    |    _______|____        
+ |    |             VP            |    |   |    |   |            NP     
+ |    |     ________|___          |    |   |    |   |        ____|___    
+ |    |    |            NP        |    |   |    |   |       |        PP 
+ |    |    |         ___|___      |    |   |    |   |       |        |   
+ NP  POS   |       POS      |     |    NP  |    |  POS      |       POS 
+ |    |    |        |       |     |    |   |    |   |       |        |   
+ N   Adv   V       Det      N    Conj  N   V    P  Det      N       Adv 
+ |    |    |        |       |     |    |   |    |   |       |        |   
+she never said      a      word until  we were  at the     door     here
+
+Noun Phrase Chunks
+she
+a word
+we
+door here
+                                  S                                     
+            ______________________|_____________                         
+           |                      |             CP                      
+           |                      |     ________|___                     
+           |                      |    |            VP                  
+           |                      |    |    ________|___                 
+           CP                     |    |   |            PP              
+  _________|____                  |    |   |     _______|___             
+ |              VP                |    |   |    |           NP          
+ |     _________|___              |    |   |    |    _______|____        
+ |    |             VP            |    |   |    |   |            NP     
+ |    |     ________|___          |    |   |    |   |        ____|___    
+ |    |    |            NP        |    |   |    |   |       |        PP 
+ |    |    |         ___|___      |    |   |    |   |       |        |   
+ NP  POS   |       POS      NP    |    NP  |    |  POS      |       POS 
+ |    |    |        |       |     |    |   |    |   |       |        |   
+ N   Adv   V       Det      N    Conj  N   V    P  Det      N       Adv 
+ |    |    |        |       |     |    |   |    |   |       |        |   
+she never said      a      word until  we were  at the     door     here
+
+Noun Phrase Chunks
+she
+word
+we
+door here
+
+
+(100days) jeddwong@Jedds-MacBook-Pro-14 Project6a-Parser % python parser.py sentences/8.txt
+                     S                   
+         ____________|________            
+        CP           |        CP         
+   _____|___         |        |           
+  |         VP       |        VP         
+  |      ___|___     |     ___|___        
+  |     |       PP   |    |       NP     
+  |     |       |    |    |    ___|___    
+  NP    |      POS   |    |  POS      |  
+  |     |       |    |    |   |       |   
+  N     V      Adv  Conj  V  Det      N  
+  |     |       |    |    |   |       |   
+holmes sat     down and  lit his     pipe
+
+Noun Phrase Chunks
+holmes
+his pipe
+                     S                   
+         ____________|________            
+        CP           |        CP         
+   _____|___         |        |           
+  |         VP       |        VP         
+  |      ___|___     |     ___|___        
+  |     |       PP   |    |       NP     
+  |     |       |    |    |    ___|___    
+  NP    |      POS   |    |  POS      NP 
+  |     |       |    |    |   |       |   
+  N     V      Adv  Conj  V  Det      N  
+  |     |       |    |    |   |       |   
+holmes sat     down and  lit his     pipe
+
+Noun Phrase Chunks
+holmes
+pipe
+
+
+
+(100days) jeddwong@Jedds-MacBook-Pro-14 Project6a-Parser % python parser.py sentences/9.txt
+                                        S                                                 
+      __________________________________|_________________________                         
+     CP                                        |                  |                       
+  ___|_________                                |                  |                        
+ |             VP                              |                  CP                      
+ |    _________|_____                          |                  |                        
+ |   |               NP                        |                  VP                      
+ |   |    ___________|____                     |     _____________|___                     
+ |   |   |                NP                   |    |                 NP                  
+ |   |   |      __________|___                 |    |          _______|____________        
+ |   |   |     |              NP               |    |         NP      |            NP     
+ |   |   |     |      ________|___             |    |     ____|___    |      ______|___    
+ NP  |  POS   POS    |            PP           |    |    |        PP POS   POS         |  
+ |   |   |     |     |         ___|_____       |    |    |        |   |     |          |   
+ N   V  Det   Adj    N        P         N     Conj  V    N        P  Det   Adj         N  
+ |   |   |     |     |        |         |      |    |    |        |   |     |          |   
+ i  had  a  country walk      on     thursday and  came home      in  a  dreadful     mess
+
+Noun Phrase Chunks
+i
+walk on thursday
+home in
+dreadful mess
+                                        S                                                 
+      __________________________________|_________________________                         
+     CP                                        |                  |                       
+  ___|_________                                |                  |                        
+ |             VP                              |                  CP                      
+ |    _________|_____                          |                  |                        
+ |   |               NP                        |                  VP                      
+ |   |    ___________|____                     |     _____________|___                     
+ |   |   |                NP                   |    |                 NP                  
+ |   |   |      __________|___                 |    |          _______|____________        
+ |   |   |     |              NP               |    |         NP      |            NP     
+ |   |   |     |      ________|___             |    |     ____|___    |      ______|___    
+ NP  |  POS   POS    |            PP           |    |    |        PP POS   POS         NP 
+ |   |   |     |     |         ___|_____       |    |    |        |   |     |          |   
+ N   V  Det   Adj    N        P         N     Conj  V    N        P  Det   Adj         N  
+ |   |   |     |     |        |         |      |    |    |        |   |     |          |   
+ i  had  a  country walk      on     thursday and  came home      in  a  dreadful     mess
+
+Noun Phrase Chunks
+i
+walk on thursday
+home in
+mess
+                                        S                                                 
+      __________________________________|_____________________                             
+     |                                         |              CP                          
+     |                                         |              |                            
+     CP                                        |              VP                          
+  ___|_________                                |     _________|___                         
+ |             VP                              |    |             NP                      
+ |    _________|_____                          |    |     ________|___                     
+ |   |               NP                        |    |    |            PP                  
+ |   |    ___________|____                     |    |    |     _______|_____               
+ |   |   |                NP                   |    |    |    |             NP            
+ |   |   |      __________|___                 |    |    |    |    _________|______        
+ |   |   |     |              NP               |    |    |    |   |                NP     
+ |   |   |     |      ________|___             |    |    |    |   |          ______|___    
+ NP  |  POS   POS    |            PP           |    |    |    |  POS       POS         |  
+ |   |   |     |     |         ___|_____       |    |    |    |   |         |          |   
+ N   V  Det   Adj    N        P         N     Conj  V    N    P  Det       Adj         N  
+ |   |   |     |     |        |         |      |    |    |    |   |         |          |   
+ i  had  a  country walk      on     thursday and  came home  in  a      dreadful     mess
+
+Noun Phrase Chunks
+i
+walk on thursday
+home in a dreadful mess
+dreadful mess
+                                        S                                                 
+      __________________________________|_____________________                             
+     |                                         |              CP                          
+     |                                         |              |                            
+     CP                                        |              VP                          
+  ___|_________                                |     _________|___                         
+ |             VP                              |    |             NP                      
+ |    _________|_____                          |    |     ________|___                     
+ |   |               NP                        |    |    |            PP                  
+ |   |    ___________|____                     |    |    |     _______|_____               
+ |   |   |                NP                   |    |    |    |             NP            
+ |   |   |      __________|___                 |    |    |    |    _________|______        
+ |   |   |     |              NP               |    |    |    |   |                NP     
+ |   |   |     |      ________|___             |    |    |    |   |          ______|___    
+ NP  |  POS   POS    |            PP           |    |    |    |  POS       POS         NP 
+ |   |   |     |     |         ___|_____       |    |    |    |   |         |          |   
+ N   V  Det   Adj    N        P         N     Conj  V    N    P  Det       Adj         N  
+ |   |   |     |     |        |         |      |    |    |    |   |         |          |   
+ i  had  a  country walk      on     thursday and  came home  in  a      dreadful     mess
+
+Noun Phrase Chunks
+i
+walk on thursday
+home in a dreadful mess
+mess
+                                        S                                                 
+      __________________________________|_________________________                         
+     CP                                        |                  |                       
+  ___|_________                                |                  |                        
+ |             VP                              |                  |                       
+ |    _________|_____                          |                  |                        
+ |   |               NP                        |                  CP                      
+ |   |    ___________|____                     |                  |                        
+ |   |   |                NP                   |                  VP                      
+ |   |   |      __________|___                 |     _____________|___                     
+ |   |   |     |              NP               |    |                 NP                  
+ |   |   |     |      ________|___             |    |          _______|____________        
+ |   |   |     |     |            PP           |    |         NP      |            NP     
+ |   |   |     |     |         ___|_____       |    |     ____|___    |      ______|___    
+ NP  |  POS   POS    |        |         NP     |    |    |        PP POS   POS         |  
+ |   |   |     |     |        |         |      |    |    |        |   |     |          |   
+ N   V  Det   Adj    N        P         N     Conj  V    N        P  Det   Adj         N  
+ |   |   |     |     |        |         |      |    |    |        |   |     |          |   
+ i  had  a  country walk      on     thursday and  came home      in  a  dreadful     mess
+
+Noun Phrase Chunks
+i
+walk on thursday
+thursday
+home in
+dreadful mess
+                                        S                                                 
+      __________________________________|_________________________                         
+     CP                                        |                  |                       
+  ___|_________                                |                  |                        
+ |             VP                              |                  |                       
+ |    _________|_____                          |                  |                        
+ |   |               NP                        |                  CP                      
+ |   |    ___________|____                     |                  |                        
+ |   |   |                NP                   |                  VP                      
+ |   |   |      __________|___                 |     _____________|___                     
+ |   |   |     |              NP               |    |                 NP                  
+ |   |   |     |      ________|___             |    |          _______|____________        
+ |   |   |     |     |            PP           |    |         NP      |            NP     
+ |   |   |     |     |         ___|_____       |    |     ____|___    |      ______|___    
+ NP  |  POS   POS    |        |         NP     |    |    |        PP POS   POS         NP 
+ |   |   |     |     |        |         |      |    |    |        |   |     |          |   
+ N   V  Det   Adj    N        P         N     Conj  V    N        P  Det   Adj         N  
+ |   |   |     |     |        |         |      |    |    |        |   |     |          |   
+ i  had  a  country walk      on     thursday and  came home      in  a  dreadful     mess
+
+Noun Phrase Chunks
+i
+walk on thursday
+thursday
+home in
+mess
+                                        S                                                 
+      __________________________________|_____________________                             
+     CP                                        |              CP                          
+  ___|_________                                |              |                            
+ |             VP                              |              VP                          
+ |    _________|_____                          |     _________|___                         
+ |   |               NP                        |    |             NP                      
+ |   |    ___________|____                     |    |     ________|___                     
+ |   |   |                NP                   |    |    |            PP                  
+ |   |   |      __________|___                 |    |    |     _______|_____               
+ |   |   |     |              NP               |    |    |    |             NP            
+ |   |   |     |      ________|___             |    |    |    |    _________|______        
+ |   |   |     |     |            PP           |    |    |    |   |                NP     
+ |   |   |     |     |         ___|_____       |    |    |    |   |          ______|___    
+ NP  |  POS   POS    |        |         NP     |    |    |    |  POS       POS         |  
+ |   |   |     |     |        |         |      |    |    |    |   |         |          |   
+ N   V  Det   Adj    N        P         N     Conj  V    N    P  Det       Adj         N  
+ |   |   |     |     |        |         |      |    |    |    |   |         |          |   
+ i  had  a  country walk      on     thursday and  came home  in  a      dreadful     mess
+
+Noun Phrase Chunks
+i
+walk on thursday
+thursday
+home in a dreadful mess
+dreadful mess
+                                        S                                                 
+      __________________________________|_____________________                             
+     CP                                        |              CP                          
+  ___|_________                                |              |                            
+ |             VP                              |              VP                          
+ |    _________|_____                          |     _________|___                         
+ |   |               NP                        |    |             NP                      
+ |   |    ___________|____                     |    |     ________|___                     
+ |   |   |                NP                   |    |    |            PP                  
+ |   |   |      __________|___                 |    |    |     _______|_____               
+ |   |   |     |              NP               |    |    |    |             NP            
+ |   |   |     |      ________|___             |    |    |    |    _________|______        
+ |   |   |     |     |            PP           |    |    |    |   |                NP     
+ |   |   |     |     |         ___|_____       |    |    |    |   |          ______|___    
+ NP  |  POS   POS    |        |         NP     |    |    |    |  POS       POS         NP 
+ |   |   |     |     |        |         |      |    |    |    |   |         |          |   
+ N   V  Det   Adj    N        P         N     Conj  V    N    P  Det       Adj         N  
+ |   |   |     |     |        |         |      |    |    |    |   |         |          |   
+ i  had  a  country walk      on     thursday and  came home  in  a      dreadful     mess
+
+Noun Phrase Chunks
+i
+walk on thursday
+thursday
+home in a dreadful mess
+mess
+
+
+
+
+(100days) jeddwong@Jedds-MacBook-Pro-14 Project6a-Parser % python parser.py sentences/9.txt
+              S                                                     
+  ____________|________________                                      
+ |                             VP                                   
+ |    _________________________|________                             
+ |   |                                  NP                          
+ |   |         _________________________|________________________    
+ |   |        NP                                             |   |  
+ |   |    ____|______                                        |   |   
+ |   |   |           NP                                      |   |  
+ |   |   |     ______|____                                   |   |   
+ |   |   |    |           NP                                 |   |  
+ |   |   |    |       ____|_____________                     |   |   
+ |   |   |    |      |                  NP                   |   |  
+ |   |   |    |      |          ________|____________        |   |   
+ |   |   |    |      |         NP           |        |       |   |  
+ |   |   |    |      |     ____|____        |        |       |   |   
+ |   |   |    |      |    |         NP      |        NP      |   |  
+ |   |   |    |      |    |     ____|___    |    ____|___    |   |   
+ NP  |  POS  POS    POS  POS   |        PP POS  |        PP POS  NP 
+ |   |   |    |      |    |    |        |   |   |        |   |   |   
+ N   V  Det  Adj    Adj  Adj   N        P  Det  N        P  Det  N  
+ |   |   |    |      |    |    |        |   |   |        |   |   |   
+ i  had  a  little moist red paint      in the palm      of  my hand
+
+Noun Phrase Chunks
+i
+paint in
+palm of
+hand
+              S                                                     
+  ____________|________________                                      
+ |                             VP                                   
+ |    _________________________|________                             
+ |   |                                  NP                          
+ |   |         _________________________|________________________    
+ |   |        NP                                             |   |  
+ |   |    ____|______                                        |   |   
+ |   |   |           NP                                      |   |  
+ |   |   |     ______|____                                   |   |   
+ |   |   |    |           NP                                 |   |  
+ |   |   |    |       ____|_____________                     |   |   
+ |   |   |    |      |                  NP                   |   |  
+ |   |   |    |      |     _____________|___                 |   |   
+ |   |   |    |      |    |                 NP               |   |  
+ |   |   |    |      |    |          _______|________        |   |   
+ |   |   |    |      |    |         NP      |        NP      |   |  
+ |   |   |    |      |    |     ____|___    |    ____|___    |   |   
+ NP  |  POS  POS    POS  POS   |        PP POS  |        PP POS  NP 
+ |   |   |    |      |    |    |        |   |   |        |   |   |   
+ N   V  Det  Adj    Adj  Adj   N        P  Det  N        P  Det  N  
+ |   |   |    |      |    |    |        |   |   |        |   |   |   
+ i  had  a  little moist red paint      in the palm      of  my hand
+
+Noun Phrase Chunks
+i
+paint in
+palm of
+hand
+              S                                                     
+  ____________|________________                                      
+ |                             VP                                   
+ |    _________________________|____                                 
+ |   |                              NP                              
+ |   |         _____________________|____________________________    
+ |   |        NP                                             |   |  
+ |   |    ____|______                                        |   |   
+ |   |   |           NP                                      |   |  
+ |   |   |     ______|____                                   |   |   
+ |   |   |    |           NP                                 |   |  
+ |   |   |    |       ____|_________                         |   |   
+ |   |   |    |      |              NP                       |   |  
+ |   |   |    |      |     _________|___                     |   |   
+ |   |   |    |      |    |             NP                   |   |  
+ |   |   |    |      |    |     ________|___                 |   |   
+ |   |   |    |      |    |    |            PP               |   |  
+ |   |   |    |      |    |    |     _______|___             |   |   
+ |   |   |    |      |    |    |    |           NP           |   |  
+ |   |   |    |      |    |    |    |    _______|____        |   |   
+ |   |   |    |      |    |    |    |   |            NP      |   |  
+ |   |   |    |      |    |    |    |   |        ____|___    |   |   
+ NP  |  POS  POS    POS  POS   |    |  POS      |        PP POS  NP 
+ |   |   |    |      |    |    |    |   |       |        |   |   |   
+ N   V  Det  Adj    Adj  Adj   N    P  Det      N        P  Det  N  
+ |   |   |    |      |    |    |    |   |       |        |   |   |   
+ i  had  a  little moist red paint  in the     palm      of  my hand
+
+Noun Phrase Chunks
+i
+paint in the palm of
+palm of
+hand
+              S                                                         
+  ____________|____________________                                      
+ |                                 VP                                   
+ |    _____________________________|________                             
+ |   |                                      NP                          
+ |   |                ______________________|________________            
+ |   |               NP                         |            |          
+ |   |    ___________|____                      |            |           
+ |   |   |                NP                    |            |          
+ |   |   |     ___________|___                  |            |           
+ |   |   |    |               NP                |            |          
+ |   |   |    |       ________|____             |            |           
+ |   |   |    |      |             NP           |            NP         
+ |   |   |    |      |     ________|____        |         ___|_______    
+ |   |   |    |      |    |             NP      |        NP      |   |  
+ |   |   |    |      |    |         ____|___    |    ____|___    |   |   
+ NP  |  POS  POS    POS  POS       |        PP POS  |        PP POS  NP 
+ |   |   |    |      |    |        |        |   |   |        |   |   |   
+ N   V  Det  Adj    Adj  Adj       N        P  Det  N        P  Det  N  
+ |   |   |    |      |    |        |        |   |   |        |   |   |   
+ i  had  a  little moist red     paint      in the palm      of  my hand
+
+Noun Phrase Chunks
+i
+paint in
+palm of
+hand
+     S                                                                      
+  ___|___                                                                    
+ |       VP                                                                 
+ |    ___|___________                                                        
+ |   |               NP                                                     
+ |   |    ___________|______________________                                 
+ |   |   |                                  NP                              
+ |   |   |                 _________________|________________                
+ |   |   |                NP                    |            |              
+ |   |   |     ___________|___                  |            |               
+ |   |   |    |               NP                |            NP             
+ |   |   |    |       ________|____             |    ________|___            
+ |   |   |    |      |             NP           |   |            PP         
+ |   |   |    |      |     ________|____        |   |     _______|___        
+ |   |   |    |      |    |             NP      |   |    |           NP     
+ |   |   |    |      |    |         ____|___    |   |    |        ___|___    
+ NP  |  POS  POS    POS  POS       |        PP POS  |    |      POS      |  
+ |   |   |    |      |    |        |        |   |   |    |       |       |   
+ N   V  Det  Adj    Adj  Adj       N        P  Det  N    P      Det      N  
+ |   |   |    |      |    |        |        |   |   |    |       |       |   
+ i  had  a  little moist red     paint      in the palm  of      my     hand
+
+Noun Phrase Chunks
+i
+paint in
+palm of my hand
+my hand
+     S                                                                      
+  ___|___                                                                    
+ |       VP                                                                 
+ |    ___|___________                                                        
+ |   |               NP                                                     
+ |   |    ___________|______________________                                 
+ |   |   |                                  NP                              
+ |   |   |                 _________________|________________                
+ |   |   |                NP                    |            |              
+ |   |   |     ___________|___                  |            |               
+ |   |   |    |               NP                |            NP             
+ |   |   |    |       ________|____             |    ________|___            
+ |   |   |    |      |             NP           |   |            PP         
+ |   |   |    |      |     ________|____        |   |     _______|___        
+ |   |   |    |      |    |             NP      |   |    |           NP     
+ |   |   |    |      |    |         ____|___    |   |    |        ___|___    
+ NP  |  POS  POS    POS  POS       |        PP POS  |    |      POS      NP 
+ |   |   |    |      |    |        |        |   |   |    |       |       |   
+ N   V  Det  Adj    Adj  Adj       N        P  Det  N    P      Det      N  
+ |   |   |    |      |    |        |        |   |   |    |       |       |   
+ i  had  a  little moist red     paint      in the palm  of      my     hand
+
+Noun Phrase Chunks
+i
+paint in
+palm of my hand
+hand
+     S                                                                  
+  ___|___                                                                
+ |       VP                                                             
+ |    ___|___________                                                    
+ |   |               NP                                                 
+ |   |    ___________|______________________                             
+ |   |   |                                  NP                          
+ |   |   |                          ________|________________________    
+ |   |   |                         NP                            |   |  
+ |   |   |                 ________|_____________________        |   |   
+ |   |   |                NP                    |        |       |   |  
+ |   |   |     ___________|___                  |        |       |   |   
+ |   |   |    |               NP                |        |       |   |  
+ |   |   |    |       ________|____             |        |       |   |   
+ |   |   |    |      |             NP           |        |       |   |  
+ |   |   |    |      |     ________|____        |        |       |   |   
+ |   |   |    |      |    |             NP      |        NP      |   |  
+ |   |   |    |      |    |         ____|___    |    ____|___    |   |   
+ NP  |  POS  POS    POS  POS       |        PP POS  |        PP POS  NP 
+ |   |   |    |      |    |        |        |   |   |        |   |   |   
+ N   V  Det  Adj    Adj  Adj       N        P  Det  N        P  Det  N  
+ |   |   |    |      |    |        |        |   |   |        |   |   |   
+ i  had  a  little moist red     paint      in the palm      of  my hand
+
+Noun Phrase Chunks
+i
+paint in
+palm of
+hand
+     S                                                                  
+  ___|___                                                                
+ |       VP                                                             
+ |    ___|___________                                                    
+ |   |               NP                                                 
+ |   |    ___________|______________________                             
+ |   |   |                                  NP                          
+ |   |   |                          ________|________________________    
+ |   |   |                         NP                            |   |  
+ |   |   |     ____________________|________                     |   |   
+ |   |   |    |                             NP                   |   |  
+ |   |   |    |                _____________|____________        |   |   
+ |   |   |    |               NP                |        |       |   |  
+ |   |   |    |       ________|____             |        |       |   |   
+ |   |   |    |      |             NP           |        |       |   |  
+ |   |   |    |      |     ________|____        |        |       |   |   
+ |   |   |    |      |    |             NP      |        NP      |   |  
+ |   |   |    |      |    |         ____|___    |    ____|___    |   |   
+ NP  |  POS  POS    POS  POS       |        PP POS  |        PP POS  NP 
+ |   |   |    |      |    |        |        |   |   |        |   |   |   
+ N   V  Det  Adj    Adj  Adj       N        P  Det  N        P  Det  N  
+ |   |   |    |      |    |        |        |   |   |        |   |   |   
+ i  had  a  little moist red     paint      in the palm      of  my hand
+
+Noun Phrase Chunks
+i
+paint in
+palm of
+hand
+     S                                                              
+  ___|___                                                            
+ |       VP                                                         
+ |    ___|___________                                                
+ |   |               NP                                             
+ |   |    ___________|__________________                             
+ |   |   |                              NP                          
+ |   |   |            __________________|________________________    
+ |   |   |           NP                                      |   |  
+ |   |   |     ______|____                                   |   |   
+ |   |   |    |           NP                                 |   |  
+ |   |   |    |       ____|_____________                     |   |   
+ |   |   |    |      |                  NP                   |   |  
+ |   |   |    |      |          ________|____________        |   |   
+ |   |   |    |      |         NP           |        |       |   |  
+ |   |   |    |      |     ____|____        |        |       |   |   
+ |   |   |    |      |    |         NP      |        NP      |   |  
+ |   |   |    |      |    |     ____|___    |    ____|___    |   |   
+ NP  |  POS  POS    POS  POS   |        PP POS  |        PP POS  NP 
+ |   |   |    |      |    |    |        |   |   |        |   |   |   
+ N   V  Det  Adj    Adj  Adj   N        P  Det  N        P  Det  N  
+ |   |   |    |      |    |    |        |   |   |        |   |   |   
+ i  had  a  little moist red paint      in the palm      of  my hand
+
+Noun Phrase Chunks
+i
+paint in
+palm of
+hand
+     S                                                              
+  ___|___                                                            
+ |       VP                                                         
+ |    ___|___________                                                
+ |   |               NP                                             
+ |   |    ___________|__________________                             
+ |   |   |                              NP                          
+ |   |   |            __________________|________________________    
+ |   |   |           NP                                      |   |  
+ |   |   |     ______|____                                   |   |   
+ |   |   |    |           NP                                 |   |  
+ |   |   |    |       ____|_____________                     |   |   
+ |   |   |    |      |                  NP                   |   |  
+ |   |   |    |      |     _____________|___                 |   |   
+ |   |   |    |      |    |                 NP               |   |  
+ |   |   |    |      |    |          _______|________        |   |   
+ |   |   |    |      |    |         NP      |        NP      |   |  
+ |   |   |    |      |    |     ____|___    |    ____|___    |   |   
+ NP  |  POS  POS    POS  POS   |        PP POS  |        PP POS  NP 
+ |   |   |    |      |    |    |        |   |   |        |   |   |   
+ N   V  Det  Adj    Adj  Adj   N        P  Det  N        P  Det  N  
+ |   |   |    |      |    |    |        |   |   |        |   |   |   
+ i  had  a  little moist red paint      in the palm      of  my hand
+
+Noun Phrase Chunks
+i
+paint in
+palm of
+hand
+     S                                                              
+  ___|___                                                            
+ |       VP                                                         
+ |    ___|___________                                                
+ |   |               NP                                             
+ |   |    ___________|______________                                 
+ |   |   |                          NP                              
+ |   |   |            ______________|____________________________    
+ |   |   |           NP                                      |   |  
+ |   |   |     ______|____                                   |   |   
+ |   |   |    |           NP                                 |   |  
+ |   |   |    |       ____|_________                         |   |   
+ |   |   |    |      |              NP                       |   |  
+ |   |   |    |      |     _________|___                     |   |   
+ |   |   |    |      |    |             NP                   |   |  
+ |   |   |    |      |    |     ________|___                 |   |   
+ |   |   |    |      |    |    |            PP               |   |  
+ |   |   |    |      |    |    |     _______|___             |   |   
+ |   |   |    |      |    |    |    |           NP           |   |  
+ |   |   |    |      |    |    |    |    _______|____        |   |   
+ |   |   |    |      |    |    |    |   |            NP      |   |  
+ |   |   |    |      |    |    |    |   |        ____|___    |   |   
+ NP  |  POS  POS    POS  POS   |    |  POS      |        PP POS  NP 
+ |   |   |    |      |    |    |    |   |       |        |   |   |   
+ N   V  Det  Adj    Adj  Adj   N    P  Det      N        P  Det  N  
+ |   |   |    |      |    |    |    |   |       |        |   |   |   
+ i  had  a  little moist red paint  in the     palm      of  my hand
+
+Noun Phrase Chunks
+i
+paint in the palm of
+palm of
+hand
+     S                                                                  
+  ___|___                                                                
+ |       VP                                                             
+ |    ___|___________                                                    
+ |   |               NP                                                 
+ |   |    ___________|______________________                             
+ |   |   |                                  NP                          
+ |   |   |                 _________________|________________            
+ |   |   |                NP                    |            |          
+ |   |   |     ___________|___                  |            |           
+ |   |   |    |               NP                |            |          
+ |   |   |    |       ________|____             |            |           
+ |   |   |    |      |             NP           |            NP         
+ |   |   |    |      |     ________|____        |         ___|_______    
+ |   |   |    |      |    |             NP      |        NP      |   |  
+ |   |   |    |      |    |         ____|___    |    ____|___    |   |   
+ NP  |  POS  POS    POS  POS       |        PP POS  |        PP POS  NP 
+ |   |   |    |      |    |        |        |   |   |        |   |   |   
+ N   V  Det  Adj    Adj  Adj       N        P  Det  N        P  Det  N  
+ |   |   |    |      |    |        |        |   |   |        |   |   |   
+ i  had  a  little moist red     paint      in the palm      of  my hand
+
+Noun Phrase Chunks
+i
+paint in
+palm of
+hand
+     S                                                                      
+  ___|___                                                                    
+ |       VP                                                                 
+ |    ___|___________                                                        
+ |   |               NP                                                     
+ |   |    ___________|______________________                                 
+ |   |   |                                  NP                              
+ |   |   |     _____________________________|___                             
+ |   |   |    |                                 NP                          
+ |   |   |    |                _________________|____________                
+ |   |   |    |               NP                |            NP             
+ |   |   |    |       ________|____             |    ________|___            
+ |   |   |    |      |             NP           |   |            PP         
+ |   |   |    |      |     ________|____        |   |     _______|___        
+ |   |   |    |      |    |             NP      |   |    |           NP     
+ |   |   |    |      |    |         ____|___    |   |    |        ___|___    
+ NP  |  POS  POS    POS  POS       |        PP POS  |    |      POS      |  
+ |   |   |    |      |    |        |        |   |   |    |       |       |   
+ N   V  Det  Adj    Adj  Adj       N        P  Det  N    P      Det      N  
+ |   |   |    |      |    |        |        |   |   |    |       |       |   
+ i  had  a  little moist red     paint      in the palm  of      my     hand
+
+Noun Phrase Chunks
+i
+paint in
+palm of my hand
+my hand
+     S                                                                      
+  ___|___                                                                    
+ |       VP                                                                 
+ |    ___|___________                                                        
+ |   |               NP                                                     
+ |   |    ___________|______________________                                 
+ |   |   |                                  NP                              
+ |   |   |     _____________________________|___                             
+ |   |   |    |                                 NP                          
+ |   |   |    |                _________________|____________                
+ |   |   |    |               NP                |            NP             
+ |   |   |    |       ________|____             |    ________|___            
+ |   |   |    |      |             NP           |   |            PP         
+ |   |   |    |      |     ________|____        |   |     _______|___        
+ |   |   |    |      |    |             NP      |   |    |           NP     
+ |   |   |    |      |    |         ____|___    |   |    |        ___|___    
+ NP  |  POS  POS    POS  POS       |        PP POS  |    |      POS      NP 
+ |   |   |    |      |    |        |        |   |   |    |       |       |   
+ N   V  Det  Adj    Adj  Adj       N        P  Det  N    P      Det      N  
+ |   |   |    |      |    |        |        |   |   |    |       |       |   
+ i  had  a  little moist red     paint      in the palm  of      my     hand
+
+Noun Phrase Chunks
+i
+paint in
+palm of my hand
+hand
+     S                                                                  
+  ___|___                                                                
+ |       VP                                                             
+ |    ___|___________                                                    
+ |   |               NP                                                 
+ |   |    ___________|______________________                             
+ |   |   |                                  NP                          
+ |   |   |     _____________________________|___                         
+ |   |   |    |                                 NP                      
+ |   |   |    |                              ___|____________________    
+ |   |   |    |                             NP                   |   |  
+ |   |   |    |                _____________|____________        |   |   
+ |   |   |    |               NP                |        |       |   |  
+ |   |   |    |       ________|____             |        |       |   |   
+ |   |   |    |      |             NP           |        |       |   |  
+ |   |   |    |      |     ________|____        |        |       |   |   
+ |   |   |    |      |    |             NP      |        NP      |   |  
+ |   |   |    |      |    |         ____|___    |    ____|___    |   |   
+ NP  |  POS  POS    POS  POS       |        PP POS  |        PP POS  NP 
+ |   |   |    |      |    |        |        |   |   |        |   |   |   
+ N   V  Det  Adj    Adj  Adj       N        P  Det  N        P  Det  N  
+ |   |   |    |      |    |        |        |   |   |        |   |   |   
+ i  had  a  little moist red     paint      in the palm      of  my hand
+
+Noun Phrase Chunks
+i
+paint in
+palm of
+hand
+     S                                                              
+  ___|___                                                            
+ |       VP                                                         
+ |    ___|___________                                                
+ |   |               NP                                             
+ |   |    ___________|__________________                             
+ |   |   |                              NP                          
+ |   |   |     _________________________|___                         
+ |   |   |    |                             NP                      
+ |   |   |    |            _________________|____________________    
+ |   |   |    |           NP                                 |   |  
+ |   |   |    |       ____|_____________                     |   |   
+ |   |   |    |      |                  NP                   |   |  
+ |   |   |    |      |          ________|____________        |   |   
+ |   |   |    |      |         NP           |        |       |   |  
+ |   |   |    |      |     ____|____        |        |       |   |   
+ |   |   |    |      |    |         NP      |        NP      |   |  
+ |   |   |    |      |    |     ____|___    |    ____|___    |   |   
+ NP  |  POS  POS    POS  POS   |        PP POS  |        PP POS  NP 
+ |   |   |    |      |    |    |        |   |   |        |   |   |   
+ N   V  Det  Adj    Adj  Adj   N        P  Det  N        P  Det  N  
+ |   |   |    |      |    |    |        |   |   |        |   |   |   
+ i  had  a  little moist red paint      in the palm      of  my hand
+
+Noun Phrase Chunks
+i
+paint in
+palm of
+hand
+     S                                                              
+  ___|___                                                            
+ |       VP                                                         
+ |    ___|___________                                                
+ |   |               NP                                             
+ |   |    ___________|__________________                             
+ |   |   |                              NP                          
+ |   |   |     _________________________|___                         
+ |   |   |    |                             NP                      
+ |   |   |    |            _________________|____________________    
+ |   |   |    |           NP                                 |   |  
+ |   |   |    |       ____|_____________                     |   |   
+ |   |   |    |      |                  NP                   |   |  
+ |   |   |    |      |     _____________|___                 |   |   
+ |   |   |    |      |    |                 NP               |   |  
+ |   |   |    |      |    |          _______|________        |   |   
+ |   |   |    |      |    |         NP      |        NP      |   |  
+ |   |   |    |      |    |     ____|___    |    ____|___    |   |   
+ NP  |  POS  POS    POS  POS   |        PP POS  |        PP POS  NP 
+ |   |   |    |      |    |    |        |   |   |        |   |   |   
+ N   V  Det  Adj    Adj  Adj   N        P  Det  N        P  Det  N  
+ |   |   |    |      |    |    |        |   |   |        |   |   |   
+ i  had  a  little moist red paint      in the palm      of  my hand
+
+Noun Phrase Chunks
+i
+paint in
+palm of
+hand
+     S                                                              
+  ___|___                                                            
+ |       VP                                                         
+ |    ___|___________                                                
+ |   |               NP                                             
+ |   |    ___________|______________                                 
+ |   |   |                          NP                              
+ |   |   |     _____________________|___                             
+ |   |   |    |                         NP                          
+ |   |   |    |            _____________|________________________    
+ |   |   |    |           NP                                 |   |  
+ |   |   |    |       ____|_________                         |   |   
+ |   |   |    |      |              NP                       |   |  
+ |   |   |    |      |     _________|___                     |   |   
+ |   |   |    |      |    |             NP                   |   |  
+ |   |   |    |      |    |     ________|___                 |   |   
+ |   |   |    |      |    |    |            PP               |   |  
+ |   |   |    |      |    |    |     _______|___             |   |   
+ |   |   |    |      |    |    |    |           NP           |   |  
+ |   |   |    |      |    |    |    |    _______|____        |   |   
+ |   |   |    |      |    |    |    |   |            NP      |   |  
+ |   |   |    |      |    |    |    |   |        ____|___    |   |   
+ NP  |  POS  POS    POS  POS   |    |  POS      |        PP POS  NP 
+ |   |   |    |      |    |    |    |   |       |        |   |   |   
+ N   V  Det  Adj    Adj  Adj   N    P  Det      N        P  Det  N  
+ |   |   |    |      |    |    |    |   |       |        |   |   |   
+ i  had  a  little moist red paint  in the     palm      of  my hand
+
+Noun Phrase Chunks
+i
+paint in the palm of
+palm of
+hand
+     S                                                                  
+  ___|___                                                                
+ |       VP                                                             
+ |    ___|___________                                                    
+ |   |               NP                                                 
+ |   |    ___________|______________________                             
+ |   |   |                                  NP                          
+ |   |   |     _____________________________|___                         
+ |   |   |    |                                 NP                      
+ |   |   |    |                _________________|____________            
+ |   |   |    |               NP                |            |          
+ |   |   |    |       ________|____             |            |           
+ |   |   |    |      |             NP           |            NP         
+ |   |   |    |      |     ________|____        |         ___|_______    
+ |   |   |    |      |    |             NP      |        NP      |   |  
+ |   |   |    |      |    |         ____|___    |    ____|___    |   |   
+ NP  |  POS  POS    POS  POS       |        PP POS  |        PP POS  NP 
+ |   |   |    |      |    |        |        |   |   |        |   |   |   
+ N   V  Det  Adj    Adj  Adj       N        P  Det  N        P  Det  N  
+ |   |   |    |      |    |        |        |   |   |        |   |   |   
+ i  had  a  little moist red     paint      in the palm      of  my hand
+
+Noun Phrase Chunks
+i
+paint in
+palm of
+hand
+     S                                                                  
+  ___|___                                                                
+ |       VP                                                             
+ |    ___|____                                                           
+ |   |        NP                                                        
+ |   |    ____|______                                                    
+ |   |   |           NP                                                 
+ |   |   |     ______|_________                                          
+ |   |   |    |                NP                                       
+ |   |   |    |       _________|____________                             
+ |   |   |    |      |                      NP                          
+ |   |   |    |      |          ____________|____________                
+ |   |   |    |      |         |            |            NP             
+ |   |   |    |      |         |            |    ________|___            
+ |   |   |    |      |         NP           |   |            PP         
+ |   |   |    |      |     ____|____        |   |     _______|___        
+ |   |   |    |      |    |         NP      |   |    |           NP     
+ |   |   |    |      |    |     ____|___    |   |    |        ___|___    
+ NP  |  POS  POS    POS  POS   |        PP POS  |    |      POS      |  
+ |   |   |    |      |    |    |        |   |   |    |       |       |   
+ N   V  Det  Adj    Adj  Adj   N        P  Det  N    P      Det      N  
+ |   |   |    |      |    |    |        |   |   |    |       |       |   
+ i  had  a  little moist red paint      in the palm  of      my     hand
+
+Noun Phrase Chunks
+i
+paint in
+palm of my hand
+my hand
+     S                                                                  
+  ___|___                                                                
+ |       VP                                                             
+ |    ___|____                                                           
+ |   |        NP                                                        
+ |   |    ____|______                                                    
+ |   |   |           NP                                                 
+ |   |   |     ______|_________                                          
+ |   |   |    |                NP                                       
+ |   |   |    |       _________|____________                             
+ |   |   |    |      |                      NP                          
+ |   |   |    |      |          ____________|____________                
+ |   |   |    |      |         |            |            NP             
+ |   |   |    |      |         |            |    ________|___            
+ |   |   |    |      |         NP           |   |            PP         
+ |   |   |    |      |     ____|____        |   |     _______|___        
+ |   |   |    |      |    |         NP      |   |    |           NP     
+ |   |   |    |      |    |     ____|___    |   |    |        ___|___    
+ NP  |  POS  POS    POS  POS   |        PP POS  |    |      POS      NP 
+ |   |   |    |      |    |    |        |   |   |    |       |       |   
+ N   V  Det  Adj    Adj  Adj   N        P  Det  N    P      Det      N  
+ |   |   |    |      |    |    |        |   |   |    |       |       |   
+ i  had  a  little moist red paint      in the palm  of      my     hand
+
+Noun Phrase Chunks
+i
+paint in
+palm of my hand
+hand
+     S                                                              
+  ___|___                                                            
+ |       VP                                                         
+ |    ___|____                                                       
+ |   |        NP                                                    
+ |   |    ____|______                                                
+ |   |   |           NP                                             
+ |   |   |     ______|_________                                      
+ |   |   |    |                NP                                   
+ |   |   |    |       _________|____________                         
+ |   |   |    |      |                      NP                      
+ |   |   |    |      |                   ___|____________________    
+ |   |   |    |      |                  NP                   |   |  
+ |   |   |    |      |          ________|____________        |   |   
+ |   |   |    |      |         NP           |        |       |   |  
+ |   |   |    |      |     ____|____        |        |       |   |   
+ |   |   |    |      |    |         NP      |        NP      |   |  
+ |   |   |    |      |    |     ____|___    |    ____|___    |   |   
+ NP  |  POS  POS    POS  POS   |        PP POS  |        PP POS  NP 
+ |   |   |    |      |    |    |        |   |   |        |   |   |   
+ N   V  Det  Adj    Adj  Adj   N        P  Det  N        P  Det  N  
+ |   |   |    |      |    |    |        |   |   |        |   |   |   
+ i  had  a  little moist red paint      in the palm      of  my hand
+
+Noun Phrase Chunks
+i
+paint in
+palm of
+hand
+     S                                                              
+  ___|___                                                            
+ |       VP                                                         
+ |    ___|____                                                       
+ |   |        NP                                                    
+ |   |    ____|______                                                
+ |   |   |           NP                                             
+ |   |   |     ______|_________                                      
+ |   |   |    |                NP                                   
+ |   |   |    |       _________|____________                         
+ |   |   |    |      |                      NP                      
+ |   |   |    |      |                   ___|____________________    
+ |   |   |    |      |                  NP                   |   |  
+ |   |   |    |      |     _____________|___                 |   |   
+ |   |   |    |      |    |                 NP               |   |  
+ |   |   |    |      |    |          _______|________        |   |   
+ |   |   |    |      |    |         NP      |        NP      |   |  
+ |   |   |    |      |    |     ____|___    |    ____|___    |   |   
+ NP  |  POS  POS    POS  POS   |        PP POS  |        PP POS  NP 
+ |   |   |    |      |    |    |        |   |   |        |   |   |   
+ N   V  Det  Adj    Adj  Adj   N        P  Det  N        P  Det  N  
+ |   |   |    |      |    |    |        |   |   |        |   |   |   
+ i  had  a  little moist red paint      in the palm      of  my hand
+
+Noun Phrase Chunks
+i
+paint in
+palm of
+hand
+     S                                                              
+  ___|___                                                            
+ |       VP                                                         
+ |    ___|____                                                       
+ |   |        NP                                                    
+ |   |    ____|______                                                
+ |   |   |           NP                                             
+ |   |   |     ______|_________                                      
+ |   |   |    |                NP                                   
+ |   |   |    |       _________|________                             
+ |   |   |    |      |                  NP                          
+ |   |   |    |      |               ___|________________________    
+ |   |   |    |      |              NP                       |   |  
+ |   |   |    |      |     _________|___                     |   |   
+ |   |   |    |      |    |             NP                   |   |  
+ |   |   |    |      |    |     ________|___                 |   |   
+ |   |   |    |      |    |    |            PP               |   |  
+ |   |   |    |      |    |    |     _______|___             |   |   
+ |   |   |    |      |    |    |    |           NP           |   |  
+ |   |   |    |      |    |    |    |    _______|____        |   |   
+ |   |   |    |      |    |    |    |   |            NP      |   |  
+ |   |   |    |      |    |    |    |   |        ____|___    |   |   
+ NP  |  POS  POS    POS  POS   |    |  POS      |        PP POS  NP 
+ |   |   |    |      |    |    |    |   |       |        |   |   |   
+ N   V  Det  Adj    Adj  Adj   N    P  Det      N        P  Det  N  
+ |   |   |    |      |    |    |    |   |       |        |   |   |   
+ i  had  a  little moist red paint  in the     palm      of  my hand
+
+Noun Phrase Chunks
+i
+paint in the palm of
+palm of
+hand
+     S                                                              
+  ___|___                                                            
+ |       VP                                                         
+ |    ___|____                                                       
+ |   |        NP                                                    
+ |   |    ____|______                                                
+ |   |   |           NP                                             
+ |   |   |     ______|_________                                      
+ |   |   |    |                NP                                   
+ |   |   |    |       _________|____________                         
+ |   |   |    |      |                      NP                      
+ |   |   |    |      |          ____________|____________            
+ |   |   |    |      |         NP           |            NP         
+ |   |   |    |      |     ____|____        |         ___|_______    
+ |   |   |    |      |    |         NP      |        NP      |   |  
+ |   |   |    |      |    |     ____|___    |    ____|___    |   |   
+ NP  |  POS  POS    POS  POS   |        PP POS  |        PP POS  NP 
+ |   |   |    |      |    |    |        |   |   |        |   |   |   
+ N   V  Det  Adj    Adj  Adj   N        P  Det  N        P  Det  N  
+ |   |   |    |      |    |    |        |   |   |        |   |   |   
+ i  had  a  little moist red paint      in the palm      of  my hand
+
+Noun Phrase Chunks
+i
+paint in
+palm of
+hand
+     S                                                                  
+  ___|___                                                                
+ |       VP                                                             
+ |    ___|____                                                           
+ |   |        NP                                                        
+ |   |    ____|______                                                    
+ |   |   |           NP                                                 
+ |   |   |     ______|_________                                          
+ |   |   |    |                NP                                       
+ |   |   |    |       _________|____________                             
+ |   |   |    |      |                      NP                          
+ |   |   |    |      |     _________________|___                         
+ |   |   |    |      |    |                     NP                      
+ |   |   |    |      |    |          ___________|________                
+ |   |   |    |      |    |         |       |            NP             
+ |   |   |    |      |    |         |       |    ________|___            
+ |   |   |    |      |    |         |       |   |            PP         
+ |   |   |    |      |    |         |       |   |     _______|___        
+ |   |   |    |      |    |         NP      |   |    |           NP     
+ |   |   |    |      |    |     ____|___    |   |    |        ___|___    
+ NP  |  POS  POS    POS  POS   |        PP POS  |    |      POS      |  
+ |   |   |    |      |    |    |        |   |   |    |       |       |   
+ N   V  Det  Adj    Adj  Adj   N        P  Det  N    P      Det      N  
+ |   |   |    |      |    |    |        |   |   |    |       |       |   
+ i  had  a  little moist red paint      in the palm  of      my     hand
+
+Noun Phrase Chunks
+i
+paint in
+palm of my hand
+my hand
+     S                                                                  
+  ___|___                                                                
+ |       VP                                                             
+ |    ___|____                                                           
+ |   |        NP                                                        
+ |   |    ____|______                                                    
+ |   |   |           NP                                                 
+ |   |   |     ______|_________                                          
+ |   |   |    |                NP                                       
+ |   |   |    |       _________|____________                             
+ |   |   |    |      |                      NP                          
+ |   |   |    |      |     _________________|___                         
+ |   |   |    |      |    |                     NP                      
+ |   |   |    |      |    |          ___________|________                
+ |   |   |    |      |    |         |       |            NP             
+ |   |   |    |      |    |         |       |    ________|___            
+ |   |   |    |      |    |         |       |   |            PP         
+ |   |   |    |      |    |         |       |   |     _______|___        
+ |   |   |    |      |    |         NP      |   |    |           NP     
+ |   |   |    |      |    |     ____|___    |   |    |        ___|___    
+ NP  |  POS  POS    POS  POS   |        PP POS  |    |      POS      NP 
+ |   |   |    |      |    |    |        |   |   |    |       |       |   
+ N   V  Det  Adj    Adj  Adj   N        P  Det  N    P      Det      N  
+ |   |   |    |      |    |    |        |   |   |    |       |       |   
+ i  had  a  little moist red paint      in the palm  of      my     hand
+
+Noun Phrase Chunks
+i
+paint in
+palm of my hand
+hand
+     S                                                              
+  ___|___                                                            
+ |       VP                                                         
+ |    ___|____                                                       
+ |   |        NP                                                    
+ |   |    ____|______                                                
+ |   |   |           NP                                             
+ |   |   |     ______|_________                                      
+ |   |   |    |                NP                                   
+ |   |   |    |       _________|____________                         
+ |   |   |    |      |                      NP                      
+ |   |   |    |      |     _________________|___                     
+ |   |   |    |      |    |                     NP                  
+ |   |   |    |      |    |                  ___|________________    
+ |   |   |    |      |    |                 NP               |   |  
+ |   |   |    |      |    |          _______|________        |   |   
+ |   |   |    |      |    |         NP      |        NP      |   |  
+ |   |   |    |      |    |     ____|___    |    ____|___    |   |   
+ NP  |  POS  POS    POS  POS   |        PP POS  |        PP POS  NP 
+ |   |   |    |      |    |    |        |   |   |        |   |   |   
+ N   V  Det  Adj    Adj  Adj   N        P  Det  N        P  Det  N  
+ |   |   |    |      |    |    |        |   |   |        |   |   |   
+ i  had  a  little moist red paint      in the palm      of  my hand
+
+Noun Phrase Chunks
+i
+paint in
+palm of
+hand
+     S                                                              
+  ___|___                                                            
+ |       VP                                                         
+ |    ___|____                                                       
+ |   |        NP                                                    
+ |   |    ____|______                                                
+ |   |   |           NP                                             
+ |   |   |     ______|_________                                      
+ |   |   |    |                NP                                   
+ |   |   |    |       _________|________                             
+ |   |   |    |      |                  NP                          
+ |   |   |    |      |     _____________|_______                     
+ |   |   |    |      |    |                     NP                  
+ |   |   |    |      |    |              _______|________________    
+ |   |   |    |      |    |             NP                   |   |  
+ |   |   |    |      |    |     ________|___                 |   |   
+ |   |   |    |      |    |    |            PP               |   |  
+ |   |   |    |      |    |    |     _______|___             |   |   
+ |   |   |    |      |    |    |    |           NP           |   |  
+ |   |   |    |      |    |    |    |    _______|____        |   |   
+ |   |   |    |      |    |    |    |   |            NP      |   |  
+ |   |   |    |      |    |    |    |   |        ____|___    |   |   
+ NP  |  POS  POS    POS  POS   |    |  POS      |        PP POS  NP 
+ |   |   |    |      |    |    |    |   |       |        |   |   |   
+ N   V  Det  Adj    Adj  Adj   N    P  Det      N        P  Det  N  
+ |   |   |    |      |    |    |    |   |       |        |   |   |   
+ i  had  a  little moist red paint  in the     palm      of  my hand
+
+Noun Phrase Chunks
+i
+paint in the palm of
+palm of
+hand
+     S                                                              
+  ___|___                                                            
+ |       VP                                                         
+ |    ___|____                                                       
+ |   |        NP                                                    
+ |   |    ____|______                                                
+ |   |   |           NP                                             
+ |   |   |     ______|_________                                      
+ |   |   |    |                NP                                   
+ |   |   |    |       _________|____________                         
+ |   |   |    |      |                      NP                      
+ |   |   |    |      |     _________________|___                     
+ |   |   |    |      |    |                     NP                  
+ |   |   |    |      |    |          ___________|________            
+ |   |   |    |      |    |         |       |            NP         
+ |   |   |    |      |    |         |       |         ___|_______    
+ |   |   |    |      |    |         NP      |        NP      |   |  
+ |   |   |    |      |    |     ____|___    |    ____|___    |   |   
+ NP  |  POS  POS    POS  POS   |        PP POS  |        PP POS  NP 
+ |   |   |    |      |    |    |        |   |   |        |   |   |   
+ N   V  Det  Adj    Adj  Adj   N        P  Det  N        P  Det  N  
+ |   |   |    |      |    |    |        |   |   |        |   |   |   
+ i  had  a  little moist red paint      in the palm      of  my hand
+
+Noun Phrase Chunks
+i
+paint in
+palm of
+hand
+     S                                                              
+  ___|___                                                            
+ |       VP                                                         
+ |    ___|____                                                       
+ |   |        NP                                                    
+ |   |    ____|______                                                
+ |   |   |           NP                                             
+ |   |   |     ______|____                                           
+ |   |   |    |           NP                                        
+ |   |   |    |       ____|____                                      
+ |   |   |    |      |         NP                                   
+ |   |   |    |      |     ____|____                                 
+ |   |   |    |      |    |         NP                              
+ |   |   |    |      |    |     ____|_______                         
+ |   |   |    |      |    |    |            PP                      
+ |   |   |    |      |    |    |     _______|____                    
+ |   |   |    |      |    |    |    |            NP                 
+ |   |   |    |      |    |    |    |    ________|___                
+ |   |   |    |      |    |    |    |   |            NP             
+ |   |   |    |      |    |    |    |   |    ________|___            
+ |   |   |    |      |    |    |    |   |   |            PP         
+ |   |   |    |      |    |    |    |   |   |     _______|___        
+ |   |   |    |      |    |    |    |   |   |    |           NP     
+ |   |   |    |      |    |    |    |   |   |    |        ___|___    
+ NP  |  POS  POS    POS  POS   |    |  POS  |    |      POS      |  
+ |   |   |    |      |    |    |    |   |   |    |       |       |   
+ N   V  Det  Adj    Adj  Adj   N    P  Det  N    P      Det      N  
+ |   |   |    |      |    |    |    |   |   |    |       |       |   
+ i  had  a  little moist red paint  in the palm  of      my     hand
+
+Noun Phrase Chunks
+i
+paint in the palm of my hand
+palm of my hand
+my hand
+     S                                                              
+  ___|___                                                            
+ |       VP                                                         
+ |    ___|____                                                       
+ |   |        NP                                                    
+ |   |    ____|______                                                
+ |   |   |           NP                                             
+ |   |   |     ______|____                                           
+ |   |   |    |           NP                                        
+ |   |   |    |       ____|____                                      
+ |   |   |    |      |         NP                                   
+ |   |   |    |      |     ____|____                                 
+ |   |   |    |      |    |         NP                              
+ |   |   |    |      |    |     ____|_______                         
+ |   |   |    |      |    |    |            PP                      
+ |   |   |    |      |    |    |     _______|____                    
+ |   |   |    |      |    |    |    |            NP                 
+ |   |   |    |      |    |    |    |    ________|___                
+ |   |   |    |      |    |    |    |   |            NP             
+ |   |   |    |      |    |    |    |   |    ________|___            
+ |   |   |    |      |    |    |    |   |   |            PP         
+ |   |   |    |      |    |    |    |   |   |     _______|___        
+ |   |   |    |      |    |    |    |   |   |    |           NP     
+ |   |   |    |      |    |    |    |   |   |    |        ___|___    
+ NP  |  POS  POS    POS  POS   |    |  POS  |    |      POS      NP 
+ |   |   |    |      |    |    |    |   |   |    |       |       |   
+ N   V  Det  Adj    Adj  Adj   N    P  Det  N    P      Det      N  
+ |   |   |    |      |    |    |    |   |   |    |       |       |   
+ i  had  a  little moist red paint  in the palm  of      my     hand
+
+Noun Phrase Chunks
+i
+paint in the palm of my hand
+palm of my hand
+hand
+     S                                                          
+  ___|___                                                        
+ |       VP                                                     
+ |    ___|____                                                   
+ |   |        NP                                                
+ |   |    ____|______                                            
+ |   |   |           NP                                         
+ |   |   |     ______|____                                       
+ |   |   |    |           NP                                    
+ |   |   |    |       ____|____                                  
+ |   |   |    |      |         NP                               
+ |   |   |    |      |     ____|____                             
+ |   |   |    |      |    |         NP                          
+ |   |   |    |      |    |     ____|___                         
+ |   |   |    |      |    |    |        PP                      
+ |   |   |    |      |    |    |     ___|___                     
+ |   |   |    |      |    |    |    |       NP                  
+ |   |   |    |      |    |    |    |    ___|________            
+ |   |   |    |      |    |    |    |   |            NP         
+ |   |   |    |      |    |    |    |   |         ___|_______    
+ |   |   |    |      |    |    |    |   |        NP      |   |  
+ |   |   |    |      |    |    |    |   |    ____|___    |   |   
+ NP  |  POS  POS    POS  POS   |    |  POS  |        PP POS  NP 
+ |   |   |    |      |    |    |    |   |   |        |   |   |   
+ N   V  Det  Adj    Adj  Adj   N    P  Det  N        P  Det  N  
+ |   |   |    |      |    |    |    |   |   |        |   |   |   
+ i  had  a  little moist red paint  in the palm      of  my hand
+
+Noun Phrase Chunks
+i
+paint in the palm of my hand
+palm of
+hand
+     S                                                          
+  ___|___                                                        
+ |       VP                                                     
+ |    ___|____                                                   
+ |   |        NP                                                
+ |   |    ____|______                                            
+ |   |   |           NP                                         
+ |   |   |     ______|____                                       
+ |   |   |    |           NP                                    
+ |   |   |    |       ____|____                                  
+ |   |   |    |      |         NP                               
+ |   |   |    |      |     ____|____                             
+ |   |   |    |      |    |         NP                          
+ |   |   |    |      |    |     ____|_______                     
+ |   |   |    |      |    |    |            PP                  
+ |   |   |    |      |    |    |     _______|________            
+ |   |   |    |      |    |    |    |                NP         
+ |   |   |    |      |    |    |    |        ________|_______    
+ |   |   |    |      |    |    |    |       NP           |   |  
+ |   |   |    |      |    |    |    |    ___|____        |   |   
+ |   |   |    |      |    |    |    |   |        NP      |   |  
+ |   |   |    |      |    |    |    |   |    ____|___    |   |   
+ NP  |  POS  POS    POS  POS   |    |  POS  |        PP POS  NP 
+ |   |   |    |      |    |    |    |   |   |        |   |   |   
+ N   V  Det  Adj    Adj  Adj   N    P  Det  N        P  Det  N  
+ |   |   |    |      |    |    |    |   |   |        |   |   |   
+ i  had  a  little moist red paint  in the palm      of  my hand
+
+Noun Phrase Chunks
+i
+paint in the palm of my hand
+palm of
+hand                                                
+
+

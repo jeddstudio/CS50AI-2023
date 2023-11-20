@@ -14,7 +14,7 @@ V -> "arrived" | "came" | "chuckled" | "had" | "lit" | "said" | "sat"
 V -> "smiled" | "tell" | "were"
 """
 
-# CP = Complete Phrase, POS = parts of speech
+# CP = Complete Phrase, POS = parts of speech 8 7
 NONTERMINALS = """
 S -> N V
 S -> NP VP
@@ -27,9 +27,9 @@ NP -> N | POS NP | POS P NP | NP POS NP
 VP -> V | POS VP
 VP -> V | V NP | V NA | V PP
 
-POS -> Adj | Adv | Det
+POS -> Adj | Adv | Det 
 
-PP -> P | P N | P NP
+PP -> P | P N | P NP | POS
 """
 
 
@@ -173,47 +173,3 @@ def np_chunk(tree):
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
-
-"""
-Holmes sat.
-Holmes lit a pipe.
-We arrived the day before Thursday.
-Holmes sat in the red armchair and he chuckled.
-My companion smiled an enigmatical smile. 
-Holmes chuckled to himself.
-She never said a word until we were at the door here.
-Holmes sat down and lit his pipe.
-I had a country walk on Thursday and came home in a dreadful mess.
-I had a little moist red paint in the palm of my hand.
-"""
-
-
-NONTERMINALS = """
-S -> N V
-S -> NP VP
-S -> CP Conj CP
-CP -> NP VP | VP
-
-NP -> N | POS N | N PP
-NP -> N | POS NP | POS P NP | NP POS NP
-NP -> NP Conj
-
-VP -> V | POS VP
-VP -> V | V NP | V NA | V PP
-
-POS -> Adj | Adv | Det | Det Adj
-
-
-PP ->  | P POS N | POS | P POS 
-
-PP -> P N
-| P V 
-"""
