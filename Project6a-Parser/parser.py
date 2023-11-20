@@ -16,20 +16,16 @@ V -> "smiled" | "tell" | "were"
 
 # CP = Complete Phrase, POS = parts of speech 8 7
 NONTERMINALS = """
-S -> N V
-S -> NP VP
-S -> CP Conj CP
+S -> NP VP | CP Conj CP
 CP -> NP VP | VP
 
-NP -> N | POS N | N PP
-NP -> N | POS NP | POS P NP | NP POS NP
+NP -> N | N PP | POS NP | POS P NP | NP POS NP
 
-VP -> V | POS VP
-VP -> V | V NP | V NA | V PP
+VP -> V | V NP | V NA | V PP | POS VP
 
 POS -> Adj | Adv | Det 
 
-PP -> P | P N | P NP | POS
+PP -> P | P NP | POS
 """
 
 
