@@ -26,8 +26,6 @@ def main():
     mask_token_index = get_mask_token_index(tokenizer.mask_token_id, inputs)
     if mask_token_index is None:
         sys.exit(f"Input must include mask token {tokenizer.mask_token}.")
-    else:
-        print(mask_token_index)
 
     # Use model to process input
     model = TFBertForMaskedLM.from_pretrained(MODEL)
@@ -64,7 +62,7 @@ def get_mask_token_index(mask_token_id, inputs):
     
     input_ids = inputs["input_ids"][0] # Get `input_ids` = tf.Tensor([ 101 1045 2572 1037  103  102], shape=(6,), dtype=int32)
 
-    for index, token_id in enumerate(input_ids): # `enumerate` will give a index to each token_id
+    for index, token_id in enumerate(input_ids): # `enumerate` will give a index to each token_id, [(0, 101), (1, 1045), ...]
         if token_id == mask_token_id: # Check if the token id(103) is exist 
             return index # [ 101, 1045, 2572, 1037,  103,  102], find 103, so it is 4
 
@@ -74,11 +72,18 @@ def get_mask_token_index(mask_token_id, inputs):
 
 def get_color_for_attention_score(attention_score):
     """
+    accept an attention score (a value between 0 and 1, inclusive)
+    
     Return a tuple of three integers representing a shade of gray for the
     given `attention_score`. Each value should be in the range [0, 255].
     """
-    # TODO: Implement this function
-    raise NotImplementedError
+    
+    attention_score_color = round(attention_score * 255)
+    color_tuple = (attention_score_color, attention_score_color, attention_score_color)
+
+
+    return color_tuple
+
 
 
 
